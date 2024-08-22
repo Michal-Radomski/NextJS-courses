@@ -1,14 +1,25 @@
-import App from "next/app";
 import React from "react";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { Props } from "next/script";
 
-import "../styles/globals.scss";
+import { themeDark, themeLight } from "lib/theme";
 
-class MyApp extends App {
-  public render() {
-    const { Component, pageProps } = this.props;
+export default function MyApp(props: { Component: React.FC; pageProps: Props }): JSX.Element {
+  const { Component, pageProps } = props;
 
-    return <Component {...pageProps} />;
-  }
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles && jssStyles.parentNode) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
+  }, []);
+
+  return (
+    <ThemeProvider theme={false ? themeDark : themeLight}>
+      <CssBaseline />
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
 }
-
-export default MyApp;
