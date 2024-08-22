@@ -1,6 +1,8 @@
 import App from "next/app";
 import React from "react";
 
+import "../styles/globals.scss";
+
 class MyApp extends App {
   public render() {
     const { Component, pageProps } = this.props;
