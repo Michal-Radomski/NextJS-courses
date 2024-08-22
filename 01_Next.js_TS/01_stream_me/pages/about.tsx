@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Box, Button } from "@material-ui/core";
+import { Container, Typography, Box } from "@material-ui/core";
 import Link from "next/link";
 
 export default function About(): JSX.Element {
@@ -10,9 +10,7 @@ export default function About(): JSX.Element {
           Next.js example
         </Typography>
         <Link href="/">
-          <Button variant="contained" color="primary">
-            Go to the index page
-          </Button>
+          <button>Go to the index page</button>
         </Link>
       </Box>
     </Container>
