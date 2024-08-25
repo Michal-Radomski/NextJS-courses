@@ -11,13 +11,14 @@ export default function MyApp(props: { Component: React.FC; pageProps: Props }):
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
+    // console.log("jssStyles:", jssStyles);
     if (jssStyles && jssStyles.parentNode) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
   }, []);
 
   return (
-    <ThemeProvider theme={false ? themeDark : themeLight}>
+    <ThemeProvider theme={true ? themeDark : themeLight}>
       <CssBaseline />
       <Component {...pageProps} />
     </ThemeProvider>

@@ -1,10 +1,11 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
-import { NextFont } from "next/dist/compiled/@next/font";
+// import { Inter } from "next/font/google";
+// import { NextFont } from "next/dist/compiled/@next/font";
 import { Container, Typography, Box } from "@material-ui/core";
 import Link from "next/link";
 
-const inter: NextFont = Inter({ subsets: ["latin"] });
+// const inter: NextFont = Inter({ subsets: ["latin"] });
+// console.log("inter:", inter);
 
 export default function Home(): JSX.Element {
   return (
