@@ -1,4 +1,4 @@
-import { GraphQLScalarType, Kind } from "graphql";
+import { GraphQLScalarType, Kind, ValueNode } from "graphql";
 import { ObjectId } from "mongodb";
 
 export const ObjectIdScalar = new GraphQLScalarType({
@@ -17,7 +17,7 @@ export const ObjectIdScalar = new GraphQLScalarType({
     }
   },
 
-  parseLiteral(ast) {
+  parseLiteral(ast: ValueNode) {
     if (ast.kind === Kind.STRING) {
       return new ObjectId(ast.value); // value from the client query
     }

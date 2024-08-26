@@ -5,7 +5,7 @@ import { Field, ObjectType } from "type-graphql";
 import { User } from "./User";
 import { Ref } from "../types/Ref";
 
-@ObjectType()
+@ObjectType({ description: "Stream Model" })
 export class Stream {
   @Field()
   readonly _id!: ObjectId;
