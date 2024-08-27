@@ -46,7 +46,7 @@ export class AuthResolver {
       throw new Error("Invalid login");
     }
 
-    const valid = await bcrypt.compare(password, user.password);
+    const valid: boolean = await bcrypt.compare(password, user.password);
 
     if (!valid) {
       throw new Error("Invalid login");

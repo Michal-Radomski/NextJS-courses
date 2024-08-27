@@ -1,6 +1,6 @@
 import { InputType, Field } from "type-graphql";
-
 import { ObjectId } from "mongodb";
+
 import { Stream } from "../entity/Stream";
 
 @InputType({ description: "Stream Input Model" })
