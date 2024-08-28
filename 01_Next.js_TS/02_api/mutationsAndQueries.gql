@@ -1,0 +1,38 @@
+mutation SignUp($email: String!, $password: String!) {
+  register(input: { email: $email, password: $password }) {
+    user {
+      _id
+      email
+    }
+    token
+  }
+}
+
+mutation AddStream($input: StreamInput!) {
+  addStream(input: $input) {
+    _id
+    title
+    description
+    url
+  }
+}
+
+query CurrentUser {
+  currentUser {
+    _id
+    email
+  }
+}
+
+query Stream($streamId: ObjectId!) {
+  stream(streamId: $streamId) {
+    _id
+    title
+    description
+    url
+    author {
+      _id
+      email
+    }
+  }
+}
