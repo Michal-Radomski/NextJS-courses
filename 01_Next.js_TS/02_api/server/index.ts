@@ -27,6 +27,7 @@ async function createServer(): Promise<void> {
     app.use(express.json());
 
     const schema = await createSchema();
+    // console.log("schema:", schema);
 
     // 3. create GraphQL server
     const apolloServer = new ApolloServer({
