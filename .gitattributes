@@ -6,3 +6,9 @@
 
 *.graphqls linguist-detectable=true
 *.graphqls linguist-language=GraphQL
+
+*.yml linguist-detectable=true
+*.yml linguist-language=YAML
+
+*.yaml linguist-detectable=true
+*.yaml linguist-language=YAML
