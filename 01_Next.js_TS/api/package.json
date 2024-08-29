@@ -1,5 +1,5 @@
 {
-  "name": "02_api",
+  "name": "api",
   "version": "1.0.0",
   "main": "server/index.ts",
   "scripts": {
