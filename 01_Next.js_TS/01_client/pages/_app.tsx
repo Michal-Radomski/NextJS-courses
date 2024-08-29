@@ -7,6 +7,7 @@ import "../styles/globals.scss";
 
 import { useApollo } from "lib/apollo";
 import { themeDark, themeLight } from "lib/theme";
+import { AuthProvider } from "lib/useAuth";
 
 export default function MyApp({ Component, pageProps }: { Component: React.FC; pageProps: any }): JSX.Element {
   const [darkState, setDarkState] = React.useState<boolean>(false);
@@ -28,7 +29,9 @@ export default function MyApp({ Component, pageProps }: { Component: React.FC; p
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={darkState ? themeDark : themeLight}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
       </ThemeProvider>
     </ApolloProvider>
   );

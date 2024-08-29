@@ -24,6 +24,7 @@ out
 .vscode/
 build/
 dist/
+Info.txt
 
 *.graphql.d.ts
 *.graphqls.d.ts
