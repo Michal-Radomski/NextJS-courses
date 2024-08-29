@@ -1,21 +1,22 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { useEffect, useState } from "react";
 import { ApolloProvider } from "@apollo/client";
+
+import "../styles/globals.scss";
 
 import { useApollo } from "lib/apollo";
 import { themeDark, themeLight } from "lib/theme";
 
 export default function MyApp({ Component, pageProps }: { Component: React.FC; pageProps: any }): JSX.Element {
-  const [darkState, setDarkState] = useState(false);
+  const [darkState, setDarkState] = React.useState<boolean>(false);
   const handleThemeChange = () => {
     setDarkState(!darkState);
   };
 
   const apolloClient = useApollo(pageProps.initialApolloState);
 
-  useEffect(() => {
+  React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles && jssStyles.parentNode) {
