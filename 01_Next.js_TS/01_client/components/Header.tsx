@@ -16,10 +16,10 @@ export default function Header({
   const { user } = useAuth();
 
   const links = [
-    !user && { label: "Sign Up", href: "/auth/signup" },
-    !user && { label: "Sign In", href: "/auth/signin" },
+    !user && { label: "Sign Up", href: "/auth/SignUp" },
+    !user && { label: "Sign In", href: "/auth/SignIn" },
     user && { label: "Create", href: "/streams/new" },
-    user && { label: "Sign Out", href: "/auth/signout" },
+    user && { label: "Sign Out", href: "/auth/SignOut" },
   ]
     .filter((link) => link)
     .map(({ label, href }) => {
