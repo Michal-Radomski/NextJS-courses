@@ -9,8 +9,8 @@ import { useCurrentUserQuery } from "lib/graphql/currentUser.graphql";
 type AuthProps = {
   user: any;
   error: string;
-  signIn: (email: any, password: any) => Promise<void>;
-  signUp: (email: any, password: any) => Promise<void>;
+  signIn: (email: string, password: string) => Promise<void>;
+  signUp: (email: string, password: string) => Promise<void>;
   signOut: () => void;
 };
 const AuthContext = createContext<Partial<AuthProps>>({});
