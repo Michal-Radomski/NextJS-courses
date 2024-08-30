@@ -7,7 +7,7 @@ import { useSignUpMutation } from "lib/graphql/signup.graphql";
 import { useCurrentUserQuery } from "lib/graphql/currentUser.graphql";
 
 type AuthProps = {
-  user: any;
+  user: User;
   error: string;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
@@ -18,7 +18,7 @@ const AuthContext = createContext<Partial<AuthProps>>({});
 // You can wrap your _app.js with this provider
 export function AuthProvider({ children }: { children: React.ReactNode }): JSX.Element {
   const auth = useProvideAuth();
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={auth as AuthProps}>{children}</AuthContext.Provider>;
 }
 
 // Custom React hook to access the context
@@ -30,7 +30,7 @@ function useProvideAuth() {
   const client = useApolloClient();
   const router = useRouter();
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
   const { data } = useCurrentUserQuery({
     fetchPolicy: "network-only",
     errorPolicy: "ignore",

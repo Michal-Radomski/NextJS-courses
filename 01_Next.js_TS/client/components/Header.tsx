@@ -13,12 +13,13 @@ export default function Header({
   handleThemeChange: () => void;
 }): JSX.Element {
   const classes = useStyles();
-  const { user } = useAuth();
+  const { user } = useAuth() as { user: User };
+  // console.log("user:", user);
 
   const links = [
     !user && { label: "Sign Up", href: "/auth/SignUp" },
     !user && { label: "Sign In", href: "/auth/SignIn" },
-    user && { label: "Create", href: "/streams/new" },
+    user && { label: "Create", href: "/streams/New" },
     user && { label: "Sign Out", href: "/auth/SignOut" },
   ]
     .filter((link) => link)
