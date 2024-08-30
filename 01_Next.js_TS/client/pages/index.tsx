@@ -27,6 +27,11 @@ export default function Home(): JSX.Element {
                 Go to the about page
               </Button>
             </Link>
+            <br />
+            <br />
+            <Link href="/streams">
+              <Button variant="contained">Go to the streams page</Button>
+            </Link>
           </Box>
         </Container>
       </main>

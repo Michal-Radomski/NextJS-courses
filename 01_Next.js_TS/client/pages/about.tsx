@@ -14,6 +14,11 @@ export default function About(): JSX.Element {
             Go to the index page
           </Button>
         </Link>
+        <br />
+        <br />
+        <Link href="/streams">
+          <Button variant="contained">Go to the streams page</Button>
+        </Link>
       </Box>
     </Container>
   );
