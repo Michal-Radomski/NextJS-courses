@@ -3,6 +3,7 @@ import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import cors from "cors";
+// import nextApp from "../../client";
 
 import createSchema from "../schema";
 import createSession from "../session";
@@ -54,3 +55,12 @@ async function createServer(): Promise<void> {
 }
 
 createServer();
+
+//* Production
+// (async function () {
+//   const app = express();
+//   const handle = nextApp.getRequestHandler();
+//   // create next app request handler
+//   await nextApp.prepare();
+//   app.get("*", (req, res) => handle(req, res));
+// })();

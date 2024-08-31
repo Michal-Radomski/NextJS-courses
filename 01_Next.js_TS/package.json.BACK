@@ -1,0 +1,16 @@
+{
+  "name": "01_next.js_ts",
+  "version": "1.0.0",
+  "private": "true",
+  "scripts": {
+    "start": "npm run dev --workspace=api && npm run dev --workspace=client"
+  },
+  "workspaces": [
+    "api",
+    "client"
+  ],
+  "keywords": [],
+  "author": "Michal Radomski <michalra@op.pl>",
+  "license": "MIT",
+  "description": ""
+}
