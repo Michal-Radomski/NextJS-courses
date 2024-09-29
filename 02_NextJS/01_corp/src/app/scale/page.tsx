@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function HomePage(): JSX.Element {
+export default function ScalePage(): JSX.Element {
   return (
     <React.Fragment>
-      <div>HomePage</div>
+      <div>ScalePage</div>
     </React.Fragment>
   );
 }
