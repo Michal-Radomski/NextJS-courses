@@ -29,3 +29,4 @@ notes.txt
 *.graphql.d.ts
 *.graphqls.d.ts
 __generated__
+Temp/
