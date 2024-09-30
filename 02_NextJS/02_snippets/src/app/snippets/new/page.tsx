@@ -19,7 +19,7 @@ export default function SnippetCreatePage(): JSX.Element {
         code,
       },
     });
-    console.log("snippet:", snippet);
+    // console.log("snippet:", snippet);
 
     // Redirect the user back to the root route
     redirect("/");
