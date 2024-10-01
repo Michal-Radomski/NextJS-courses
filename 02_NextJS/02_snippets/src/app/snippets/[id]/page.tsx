@@ -11,6 +11,11 @@ interface SnippetShowPageProps {
 
 export default async function SnippetShowPage(props: SnippetShowPageProps): Promise<JSX.Element> {
   // console.log("props:", props);
+  await new Promise((resolve) => {
+    // console.log("r.toString():", r.toString());
+    setTimeout(resolve, 2000);
+  });
+
   const snippet = (await db.snippet.findFirst({
     //  where: { id: Number(props.params.id) },
     where: { id: parseInt(props.params.id) },
