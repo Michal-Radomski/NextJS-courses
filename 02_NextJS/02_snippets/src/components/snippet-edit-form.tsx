@@ -1,11 +1,31 @@
 "use client";
 
-import type { Snippet } from "@prisma/client";
+import React from "react";
+import Editor from "@monaco-editor/react";
+import type { Snippet as SnippetPrisma } from "@prisma/client";
 
 interface SnippetEditFormProps {
-  snippet: Snippet;
+  snippet: SnippetPrisma | Snippet;
 }
 
 export default function SnippetEditForm({ snippet }: SnippetEditFormProps): JSX.Element {
-  return <div>Client component has snippet with title {snippet.title}</div>;
+  const [code, setCode] = React.useState<string>(snippet.code);
+
+  const handleEditorChange = (value: string = "") => {
+    setCode(value);
+  };
+
+  return (
+    <div>
+      <br />
+      <Editor
+        height="40vh"
+        theme="vs-dark"
+        language="javascript"
+        defaultValue={snippet.code}
+        options={{ minimap: { enabled: true } }}
+        onChange={handleEditorChange}
+      />
+    </div>
+  );
 }
