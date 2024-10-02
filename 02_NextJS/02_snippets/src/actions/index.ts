@@ -12,3 +12,11 @@ export async function editSnippet(id: number, code: string): Promise<void> {
 
   redirect(`/snippets/${id}`);
 }
+
+export async function deleteSnippet(id: number): Promise<void> {
+  await db.snippet.delete({
+    where: { id },
+  });
+
+  redirect("/");
+}
