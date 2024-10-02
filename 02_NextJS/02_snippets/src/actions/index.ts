@@ -24,8 +24,8 @@ export async function deleteSnippet(id: number): Promise<void> {
 export async function createSnippet(_formState: { message: string }, formData: FormData): Promise<{ message: string }> {
   try {
     // Check the user's inputs and make sure they're valid
-    const title = formData.get("title");
-    const code = formData.get("code");
+    const title = formData.get("title") as FormDataEntryValue | string;
+    const code = formData.get("code") as FormDataEntryValue | string;
 
     if (typeof title !== "string" || title.length < 3) {
       return {
