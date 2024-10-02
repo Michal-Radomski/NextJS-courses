@@ -48,3 +48,13 @@ export default async function SnippetShowPage(props: SnippetShowPageProps): Prom
     </div>
   );
 }
+
+export async function generateStaticParams(): Promise<{ id: string }[]> {
+  const snippets: Snippet[] = await db.snippet.findMany();
+
+  return snippets.map((snippet: Snippet) => {
+    return {
+      id: snippet.id.toString(),
+    };
+  });
+}
