@@ -1,0 +1,51 @@
+# WebApp Configuration File
+
+[app]
+name = "WebApp"
+version = "2.3.4"
+description = "A web application for managing tasks and projects."
+author = "John Smith"
+license = "Apache-2.0"
+
+[database]
+type = "postgresql"
+host = "localhost"
+port = 5432
+username = "webapp_user"
+password = "securepassword"
+dbname = "webapp_db"
+
+[server]
+host = "0.0.0.0"
+port = 3000
+ssl_enabled = false
+
+[auth]
+jwt_secret = "your_jwt_secret_key"
+token_expiry_hours = 24
+
+[api]
+base_url = "https://api.webapp.com/v1"
+timeout_seconds = 10
+
+[logging]
+level = "debug"
+log_file = "./logs/webapp.log"
+
+[features]
+enable_notifications = true
+enable_dark_mode = false
+
+[[allowed_origins]]
+origin = "https://example.com"
+
+[[allowed_origins]]
+origin = "https://another-example.com"
+
+[environment]
+mode = "production" # Options: development, testing, production
+debug_mode = false
+
+[settings]
+max_upload_size_mb = 10
+session_timeout_minutes = 30
