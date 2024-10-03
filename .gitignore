@@ -31,3 +31,4 @@ notes.txt
 *.graphqls.d.ts
 __generated__
 Temp/
+dev.db
