@@ -1,0 +1,41 @@
+# MyApp Configuration File
+
+[app]
+name = "MyApp"
+version = "1.0.0"
+description = "A simple application to demonstrate TOML format."
+author = "Jane Doe"
+license = "MIT"
+
+[database]
+type = "sqlite"
+path = "./data/myapp.db"
+
+[server]
+host = "127.0.0.1"
+port = 8080
+ssl_enabled = true
+
+[logging]
+level = "info"
+log_file = "./logs/myapp.log"
+
+[features]
+enable_feature_x = true
+enable_feature_y = false
+
+[[plugins]]
+name = "plugin1"
+version = "0.1.0"
+
+[[plugins]]
+name = "plugin2"
+version = "0.2.5"
+
+[dependencies]
+requests = ">=2.25.1"
+numpy = "~=1.21.0"
+
+[settings]
+timeout = 30
+retries = 3
