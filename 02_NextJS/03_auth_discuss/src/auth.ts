@@ -33,6 +33,7 @@ export const {
         session.user!.id = user.id;
       }
 
+      // console.log("session:", session);
       return session;
     },
   },
