@@ -12,3 +12,12 @@
 
 *.yaml linguist-detectable=true
 *.yaml linguist-language=YAML
+
+*.prisma linguist-detectable=true
+*.prisma linguist-language=Prisma
+
+*.sql linguist-detectable=true
+*.sql linguist-language=sql
+
+*.toml linguist-detectable=true
+*.toml linguist-language=TOML

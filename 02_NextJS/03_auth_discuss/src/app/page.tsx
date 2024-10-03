@@ -5,7 +5,7 @@ export default function Home(): JSX.Element {
   return (
     <React.Fragment>
       <div>
-        <Button>Click me!!!</Button>
+        <Button color="secondary">Click me!!!</Button>
       </div>
     </React.Fragment>
   );
