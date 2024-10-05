@@ -9,6 +9,16 @@ import { auth } from "@/auth";
 import { db } from "@/db";
 import paths from "@/paths";
 
+const createTopicSchema = z.object({
+  name: z
+    .string()
+    .min(3)
+    .regex(/[a-z-]/, {
+      message: "Must be lowercase letters or dashes without spaces",
+    }),
+  description: z.string().min(10),
+});
+
 interface CreateTopicFormState {
   errors: {
     name?: string[];
@@ -16,16 +26,6 @@ interface CreateTopicFormState {
     _form?: string[];
   };
 }
-
-const createTopicSchema = z.object({
-  name: z
-    .string()
-    .min(3)
-    .regex(/^[a-z-]+$/, {
-      message: "Must be lowercase letters or dashes without spaces",
-    }),
-  description: z.string().min(10),
-});
 
 export async function createTopic(_formState: CreateTopicFormState, formData: FormData): Promise<CreateTopicFormState> {
   const result = createTopicSchema.safeParse({
