@@ -8,9 +8,9 @@ interface PostListProps {
 }
 
 export default async function PostList({ fetchData }: PostListProps): Promise<JSX.Element> {
-  const posts = await fetchData();
+  const posts: PostWithData[] = await fetchData();
 
-  const renderedPosts = posts.map((post) => {
+  const renderedPosts: JSX.Element[] = posts.map((post: PostWithData) => {
     const topicSlug = post.topic.slug;
 
     if (!topicSlug) {
