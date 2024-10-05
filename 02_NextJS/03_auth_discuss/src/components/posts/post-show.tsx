@@ -1,6 +1,10 @@
-interface PostShowProps {}
+import type { Post } from "@prisma/client";
 
-export default function PostShow({}: PostShowProps): JSX.Element {
+interface PostShowProps {
+  post: Post;
+}
+
+export default function PostShow({ post }: PostShowProps): JSX.Element {
   return (
     <div className="m-4">
       <h1 className="text-2xl font-bold my-2">{post.title}</h1>

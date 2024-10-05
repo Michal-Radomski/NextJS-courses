@@ -1,9 +1,15 @@
-import type { Post, User, Topic } from "@prisma/client";
 import Link from "next/link";
+
+import type { PostWithData } from "@/db/queries/posts";
 import paths from "@/paths";
 
-// TODO: Get list of posts into this component somehow
-export default function PostList(): JSX.Element {
+interface PostListProps {
+  fetchData: () => Promise<PostWithData[]>;
+}
+
+export default async function PostList({ fetchData }: PostListProps): Promise<JSX.Element> {
+  const posts = await fetchData();
+
   const renderedPosts = posts.map((post) => {
     const topicSlug = post.topic.slug;
 
