@@ -16,7 +16,7 @@ export default function TopicShowPage({ params }: TopicShowPageProps): JSX.Eleme
       </div>
 
       <div>
-        <PostCreateForm />
+        <PostCreateForm slug={slug} />
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ export async function createPost(
   }
 
   const topic = await db.topic.findFirst({
-    where: { slug },
+    where: { slug: slug },
   });
 
   if (!topic) {
