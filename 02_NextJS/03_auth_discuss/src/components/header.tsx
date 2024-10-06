@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
 
@@ -14,7 +15,9 @@ export default function Header(): JSX.Element {
       </NavbarBrand>
       <NavbarContent justify="center">
         <NavbarItem>
-          <SearchInput />
+          <React.Suspense>
+            <SearchInput />
+          </React.Suspense>
         </NavbarItem>
       </NavbarContent>
 
