@@ -105,14 +105,13 @@ importantDates.push("2030-10-10");
 importantDates.push(new Date());
 console.log("importantDates:", importantDates);
 
-//* Tuples---------------
+//* Tuples - fix order! (better objects)
 // const drink = {
 //   color: "brown",
 //   carbonated: true,
 //   sugar: 40,
 // };
 
-// Type alias
 type Drink = [string, boolean, number];
 
 const pepsi: Drink = ["brown", true, 40];
@@ -120,11 +119,11 @@ const sprite: Drink = ["clear", true, 40];
 const tea: Drink = ["brown", false, 0];
 console.log({ pepsi, sprite, tea });
 
-const carSpecs: [number, number] = [400, 3354];
-console.log({ carSpecs });
+// const carSpecs: [number, number] = [400, 3354];
+// console.log({ carSpecs });
 
-const carStats = {
-  horsepower: 400,
-  weight: 3354,
-};
-console.log({ carStats });
+// const carStats = {
+//   horsepower: 400,
+//   weight: 3354,
+// };
+// console.log({ carStats });
