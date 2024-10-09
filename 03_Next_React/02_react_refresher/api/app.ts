@@ -1,3 +1,4 @@
+import http from "http";
 import express from "express";
 import bodyParser from "body-parser";
 import { getStoredPosts, storePosts } from "./data/posts";
@@ -45,4 +46,12 @@ app.post("/posts", async (req, res): Promise<void> => {
   res.status(201).json({ message: "Stored new post.", post: newPost });
 });
 
-app.listen(8080);
+const server = http.createServer(app);
+
+const port: number = 8080;
+
+server.listen({ port: port }, () => {
+  console.log(`Server is listening at http://localhost:${port}`);
+  // For testing only
+  console.log("Current Time:", new Date().toLocaleTimeString());
+});
