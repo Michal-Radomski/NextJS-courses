@@ -1,13 +1,17 @@
-import NewPost from "./NewPost";
 import Post from "./Post";
+import NewPost from "./NewPost";
 import classes from "./PostsList.module.scss";
+import Modal from "./Modal";
 
-function PostsList(): JSX.Element {
+function PostsList({ isPosting, onStopPosting }: { isPosting: boolean; onStopPosting: () => void }): JSX.Element {
   return (
     <>
-      <NewPost />
+      {isPosting && (
+        <Modal onClose={onStopPosting}>
+          <NewPost onCancel={onStopPosting} />
+        </Modal>
+      )}
       <ul className={classes.posts}>
-        <Post author="Maximilian" body="React.js is awesome!" />
         <Post author="Manuel" body="Check out the full course!" />
       </ul>
     </>
