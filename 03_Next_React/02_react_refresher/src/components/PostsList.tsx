@@ -6,11 +6,11 @@ import Modal from "./Modal";
 function PostsList({ isPosting, onStopPosting }: { isPosting: boolean; onStopPosting: () => void }): JSX.Element {
   return (
     <>
-      {isPosting && (
+      {isPosting ? (
         <Modal onClose={onStopPosting}>
           <NewPost onCancel={onStopPosting} />
         </Modal>
-      )}
+      ) : null}
       <ul className={classes.posts}>
         <Post author="Manuel" body="Check out the full course!" />
       </ul>

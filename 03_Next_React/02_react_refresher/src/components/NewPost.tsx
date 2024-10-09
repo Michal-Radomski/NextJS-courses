@@ -38,7 +38,7 @@ function NewPost({ onCancel }: { onCancel: () => void }): JSX.Element {
         <button type="button" onClick={onCancel}>
           Cancel
         </button>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </p>
     </form>
   );
