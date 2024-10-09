@@ -1,15 +1,14 @@
-const fs = require('node:fs/promises');
+import { promises as fs } from "fs";
 
-async function getStoredPosts() {
-  const rawFileContent = await fs.readFile('posts.json', { encoding: 'utf-8' });
+import { Post } from "../app";
+
+export async function getStoredPosts(): Promise<Post[]> {
+  const rawFileContent = await fs.readFile("posts.json", { encoding: "utf-8" });
   const data = JSON.parse(rawFileContent);
   const storedPosts = data.posts ?? [];
   return storedPosts;
 }
 
-function storePosts(posts) {
-  return fs.writeFile('posts.json', JSON.stringify({ posts: posts || [] }));
+export function storePosts(posts: Post[]): Promise<void> {
+  return fs.writeFile("posts.json", JSON.stringify({ posts: posts || [] }));
 }
-
-exports.getStoredPosts = getStoredPosts;
-exports.storePosts = storePosts;
