@@ -1,25 +1,25 @@
 import React from "react";
 
-import "./App.scss";
+// import "./App.scss";
 import PostsList from "./components/PostsList";
 import MainHeader from "./components/MainHeader";
 
 const App = (): JSX.Element => {
-  const [modalIsVisible, setModalIsVisible] = React.useState<boolean>(false);
+  // const [modalIsVisible, setModalIsVisible] = React.useState<boolean>(false);
 
-  function showModalHandler(): void {
-    setModalIsVisible(true);
-  }
+  // function showModalHandler(): void {
+  //   setModalIsVisible(true);
+  // }
 
-  function hideModalHandler(): void {
-    setModalIsVisible(false);
-  }
+  // function hideModalHandler(): void {
+  //   setModalIsVisible(false);
+  // }
 
   return (
     <React.Fragment>
-      <MainHeader onCreatePost={showModalHandler} />
+      <MainHeader />
       <main>
-        <PostsList isPosting={modalIsVisible} onStopPosting={hideModalHandler} />
+        <PostsList />
       </main>
     </React.Fragment>
   );

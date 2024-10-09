@@ -1,6 +1,7 @@
 import http from "http";
 import express from "express";
 import bodyParser from "body-parser";
+
 import { getStoredPosts, storePosts } from "./data/posts";
 
 export interface Post {

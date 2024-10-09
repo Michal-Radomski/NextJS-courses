@@ -2,7 +2,7 @@ import { MdPostAdd, MdMessage } from "react-icons/md";
 
 import classes from "./MainHeader.module.scss";
 
-function MainHeader({ onCreatePost }: { onCreatePost: () => void }): JSX.Element {
+function MainHeader({ onCreatePost }: { onCreatePost?: () => void }): JSX.Element {
   return (
     <header className={classes.header}>
       <h1 className={classes.logo}>
