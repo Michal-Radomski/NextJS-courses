@@ -27,7 +27,7 @@ function PostsList(): JSX.Element {
         "Content-Type": "application/json",
       },
     });
-    setPosts((existingPosts) => [postData, ...existingPosts]);
+    setPosts((existingPosts: Post[]) => [postData, ...existingPosts]);
   }
 
   return (
