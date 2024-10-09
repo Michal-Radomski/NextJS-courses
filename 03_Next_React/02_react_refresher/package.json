@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "nodemon api/app.ts",
+    "client": "npm run dev",
+    "start": "clear && concurrently \"npm run server\"  \"npm run client\""
   },
   "dependencies": {
     "react": "^18.3.1",
