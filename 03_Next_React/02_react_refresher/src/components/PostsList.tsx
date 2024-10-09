@@ -19,16 +19,16 @@ function PostsList(): JSX.Element {
     fetchPosts();
   }, []);
 
-  function addPostHandler(postData: Post) {
-    fetch("http://localhost:8080/posts", {
-      method: "POST",
-      body: JSON.stringify(postData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    setPosts((existingPosts: Post[]) => [postData, ...existingPosts]);
-  }
+  // function addPostHandler(postData: Post) {
+  //   fetch("http://localhost:8080/posts", {
+  //     method: "POST",
+  //     body: JSON.stringify(postData),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   setPosts((existingPosts: Post[]) => [postData, ...existingPosts]);
+  // }
 
   return (
     <>
