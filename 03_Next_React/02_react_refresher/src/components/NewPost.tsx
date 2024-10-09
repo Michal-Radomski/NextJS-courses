@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from "./NewPost.module.scss";
 
-function NewPost({ onCancel }: { onCancel: () => void }): JSX.Element {
+function NewPost({ onCancel, onAddPost }: { onCancel: () => void; onAddPost: (postData: Post) => void }): JSX.Element {
   const [enteredBody, setEnteredBody] = React.useState<string>("");
   const [enteredAuthor, setEnteredAuthor] = React.useState<string>("");
 
@@ -20,7 +20,8 @@ function NewPost({ onCancel }: { onCancel: () => void }): JSX.Element {
       body: enteredBody,
       author: enteredAuthor,
     };
-    console.log("postData:", postData);
+    // console.log("postData:", postData);
+    onAddPost(postData);
     onCancel();
   }
 
