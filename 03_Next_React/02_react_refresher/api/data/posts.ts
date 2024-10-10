@@ -10,5 +10,5 @@ export async function getStoredPosts(): Promise<Post[]> {
 }
 
 export function storePosts(posts: Post[]): Promise<void> {
-  return fs.writeFile("posts.json", JSON.stringify({ posts: posts || [] }));
+  return fs.writeFile("api/posts.json", JSON.stringify({ posts: posts || [] }));
 }

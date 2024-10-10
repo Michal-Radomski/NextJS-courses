@@ -6,7 +6,8 @@ function RootLayout(): JSX.Element {
   return (
     <>
       <MainHeader />
-      <Outlet /> //* For nested content of the RootLayout
+      {/* //* For nested content of the RootLayout */}
+      <Outlet />
     </>
   );
 }
