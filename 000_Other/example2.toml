@@ -35,6 +35,8 @@ log_file = "./logs/webapp.log"
 [features]
 enable_notifications = true
 enable_dark_mode = false
+enable_feature_x = true
+enable_feature_y = false
 
 [[allowed_origins]]
 origin = "https://example.com"
@@ -49,3 +51,19 @@ debug_mode = false
 [settings]
 max_upload_size_mb = 10
 session_timeout_minutes = 30
+
+[[plugins]]
+name = "plugin1"
+version = "0.1.0"
+
+[[plugins]]
+name = "plugin2"
+version = "0.2.5"
+
+[dependencies]
+requests = ">=2.25.1"
+numpy = "~=1.21.0"
+
+[settings]
+timeout = 30
+retries = 3
