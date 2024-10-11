@@ -1,15 +1,18 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import logoImg from "@/assets/logo.png";
 import classes from "./main-header.module.scss";
+
 // console.log("classes:", classes);
 // console.log("classes?.header:", classes?.header);
+// console.log("logoImg:", logoImg);
 
 export default function MainHeader(): JSX.Element {
   return (
     <header className={classes.header}>
       <Link className={classes.logo} href="/">
-        <img src={logoImg.src} alt="A plate with food on it" />
+        <Image src={logoImg} alt="A plate with food on it" />
         NextLevel Food
       </Link>
 
