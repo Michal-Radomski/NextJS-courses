@@ -27,7 +27,7 @@ export default function ImageSlideshow(): JSX.Element {
 
   React.useEffect(() => {
     const interval: NodeJS.Timeout = setInterval((): void => {
-      setCurrentImageIndex((prevIndex) => (prevIndex < images.length - 1 ? prevIndex + 1 : 0));
+      setCurrentImageIndex((prevIndex: number) => (prevIndex < images.length - 1 ? prevIndex + 1 : 0));
     }, 5000);
 
     return () => clearInterval(interval);
