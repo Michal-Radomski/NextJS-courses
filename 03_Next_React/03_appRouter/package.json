@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "db": "ts-node init.ts"
   },
   "dependencies": {
     "better-sqlite3": "^11.3.0",

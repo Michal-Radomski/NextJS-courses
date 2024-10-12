@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import React from "react";
 import Link from "next/link";
 
 import classes from "./page.module.scss";
@@ -24,9 +24,9 @@ export default function MealsPage(): JSX.Element {
         </p>
       </header>
       <main className={classes.main}>
-        <Suspense fallback={<p className={classes.loading}>Fetching meals...</p>}>
+        <React.Suspense fallback={<p className={classes.loading}>Fetching meals...</p>}>
           <Meals />
-        </Suspense>
+        </React.Suspense>
       </main>
     </>
   );
