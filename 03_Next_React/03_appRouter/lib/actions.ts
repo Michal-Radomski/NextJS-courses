@@ -9,6 +9,7 @@ function isInvalidText(text: string): boolean {
   return !text || text.trim() === "";
 }
 
+//* Server Actions
 export async function shareMeal(
   _prevState: any,
   formData: FormData
@@ -40,6 +41,6 @@ export async function shareMeal(
   }
 
   await saveMeal(meal);
-  revalidatePath("/meals");
+  revalidatePath("/meals", "page"); //* Re-validate cache!
   redirect("/meals");
 }

@@ -5,6 +5,7 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { getMeal } from "@/lib/meals";
 import classes from "./page.module.scss";
 
+//* Dynamic Metadata
 export async function generateMetadata({ params }: { params: Params }): Promise<{
   title: string;
   description: string;
