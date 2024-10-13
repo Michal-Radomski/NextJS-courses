@@ -35,7 +35,7 @@ export default function MealDetailsPage({ params }: { params: Params | { mealSlu
         <p
           className={classes.instructions}
           dangerouslySetInnerHTML={{
-            __html: meal.instructions,
+            __html: meal.instructions, //* But way!
           }}
         ></p>
       </main>
