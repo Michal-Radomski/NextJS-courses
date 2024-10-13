@@ -1,6 +1,6 @@
-import sql from "better-sqlite3";
+import sql, { Database } from "better-sqlite3";
 
-const db = sql("meals.db");
+const db: Database = sql("meals.db");
 
 export async function getMeals(): Promise<Meal[]> {
   await new Promise((resolve) => setTimeout(resolve, 5000));

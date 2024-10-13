@@ -1,6 +1,7 @@
 "use client";
 
-export default function Error(): JSX.Element {
+export default function Error({ error }: { error: Error }): JSX.Element {
+  console.log("error:", error);
   return (
     <main className="error">
       <h1>An error occurred!</h1>

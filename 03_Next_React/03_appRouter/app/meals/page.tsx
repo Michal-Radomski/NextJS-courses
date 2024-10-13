@@ -24,7 +24,7 @@ export default function MealsPage(): JSX.Element {
         </p>
       </header>
       <main className={classes.main}>
-        <React.Suspense fallback={<p className={classes.loading}>Fetching meals...</p>}>
+        <React.Suspense fallback={<p className={classes.loading}>Fetching meals (suspense)...</p>}>
           <Meals />
         </React.Suspense>
       </main>

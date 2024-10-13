@@ -5,20 +5,23 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { getMeal } from "@/lib/meals";
 import classes from "./page.module.scss";
 
-export default function MealDetailsPage({ params }: { params: Params }): JSX.Element {
+export default function MealDetailsPage({ params }: { params: Params | { mealSlug: string } }): JSX.Element {
+  // console.log("params:", params);
+
   const meal = getMeal(params.mealSlug) as Meal;
+  // console.log("meal:", meal);
 
   if (!meal) {
     notFound();
   }
 
-  meal.instructions = meal.instructions.replace(/\n/g, "<br />");
+  meal.instructions = meal.instructions.replace(/\n/g, "<br />") as string;
 
   return (
     <>
       <header className={classes.header}>
         <div className={classes.image}>
-          <Image src={meal.image} alt={meal.title} fill />
+          <Image src={meal.image} alt={meal.title} fill={true} />
         </div>
         <div className={classes.headerText}>
           <h1>{meal.title}</h1>

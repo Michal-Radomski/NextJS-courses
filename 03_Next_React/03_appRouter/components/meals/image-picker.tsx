@@ -23,7 +23,7 @@ export default function ImagePicker({ label, name }: { label: string; name: stri
     const fileReader = new FileReader() as FileReader;
 
     fileReader.onload = (): void => {
-      console.log("fileReader:", fileReader);
+      // console.log("fileReader:", fileReader);
       setPickedImage(fileReader?.result as string);
     };
 
