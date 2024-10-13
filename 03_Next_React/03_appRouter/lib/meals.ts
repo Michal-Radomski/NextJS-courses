@@ -20,11 +20,11 @@ export async function saveMeal(meal: Meal): Promise<void> {
   meal.slug = slugify(meal.title, { lower: true });
   meal.instructions = xss(meal.instructions);
 
-  const extension = meal.image.name.split(".").pop();
-  const fileName = `${meal.slug}.${extension}`;
+  const extension = (meal.image as File).name.split(".").pop() as string;
+  const fileName: string = `${meal.slug}.${extension}`;
 
-  const stream = fs.createWriteStream(`public/images/${fileName}`);
-  const bufferedImage = await meal.image.arrayBuffer();
+  const stream: fs.WriteStream = fs.createWriteStream(`public/images/${fileName}`);
+  const bufferedImage: ArrayBuffer = await (meal.image as File).arrayBuffer();
 
   stream.write(Buffer.from(bufferedImage), (error) => {
     if (error) {

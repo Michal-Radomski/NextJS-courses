@@ -32,7 +32,7 @@ export async function shareMeal(
     isInvalidText(meal.creator_email as string) ||
     !meal.creator_email.includes("@") ||
     !meal.image ||
-    meal.image.size === 0
+    (meal.image as File).size === 0
   ) {
     return {
       message: "Invalid input.",

@@ -15,6 +15,7 @@ export default function ImagePicker({ label, name }: { label: string; name: stri
 
   function handleImageChange(event: React.ChangeEvent<HTMLInputElement>): void {
     const file = event.target.files?.[0] as File;
+    // console.log("file:", file);
 
     if (!file) {
       setPickedImage(null);
