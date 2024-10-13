@@ -4,7 +4,7 @@ interface Meal {
   instructions: string;
   title: string;
   slug: string;
-  image: string;
+  image: string | any; // Temp
   summary: string;
   creator: string;
 }

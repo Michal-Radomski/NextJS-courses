@@ -1,11 +1,18 @@
 import React from "react";
 import Link from "next/link";
+import { Metadata } from "next";
 
 import classes from "./page.module.scss";
 import MealsGrid from "@/components/meals/meals-grid";
 import { getMeals } from "@/lib/meals";
 
+export const metadata: Metadata = {
+  title: "All Meals",
+  description: "Browse the delicious meals shared by our vibrant community.",
+};
+
 async function Meals(): Promise<JSX.Element> {
+  console.log("Fetching meals");
   const meals = (await getMeals()) as Meal[];
 
   return <MealsGrid meals={meals} />;

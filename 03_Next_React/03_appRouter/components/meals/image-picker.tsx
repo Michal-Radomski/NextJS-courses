@@ -37,7 +37,7 @@ export default function ImagePicker({ label, name }: { label: string; name: stri
       <div className={classes.controls}>
         <div className={classes.preview}>
           {!pickedImage && <p>No image picked yet.</p>}
-          {pickedImage && <Image src={pickedImage} alt="The image selected by the user." fill />}
+          {pickedImage && <Image src={pickedImage} alt="The image selected by the user." fill={true} />}
         </div>
         <input
           className={classes.input}
@@ -47,7 +47,6 @@ export default function ImagePicker({ label, name }: { label: string; name: stri
           name={name}
           ref={imageInput}
           onChange={handleImageChange}
-          required={true}
         />
         <button className={classes.button} type="button" onClick={handlePickClick}>
           Pick an Image

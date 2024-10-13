@@ -5,6 +5,22 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { getMeal } from "@/lib/meals";
 import classes from "./page.module.scss";
 
+export async function generateMetadata({ params }: { params: Params }): Promise<{
+  title: string;
+  description: string;
+}> {
+  const meal = getMeal(params.mealSlug) as Meal;
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 export default function MealDetailsPage({ params }: { params: Params | { mealSlug: string } }): JSX.Element {
   // console.log("params:", params);
 
