@@ -1,4 +1,10 @@
-export default function ArchiveLayout({ archive, latest }: { archive: string; latest: string }): JSX.Element {
+export default function ArchiveLayout({
+  archive,
+  latest,
+}: {
+  archive: React.ReactNode;
+  latest: React.ReactNode;
+}): JSX.Element {
   return (
     <div>
       <h1>News Archive</h1>

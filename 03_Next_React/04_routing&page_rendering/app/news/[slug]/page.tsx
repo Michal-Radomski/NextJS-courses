@@ -5,7 +5,7 @@ import Link from "next/link";
 import { DUMMY_NEWS } from "@/dummy-news";
 
 export default function NewsDetailPage({ params }: { params: Params }): JSX.Element {
-  const newsSlug = params.slug;
+  const newsSlug = params.slug as string;
   const newsItem = DUMMY_NEWS.find((newsItem: News) => newsItem.slug === newsSlug) as News;
 
   if (!newsItem) {

@@ -5,17 +5,19 @@ import NewsList from "@/components/news-list";
 import { getAvailableNewsMonths, getAvailableNewsYears, getNewsForYear, getNewsForYearAndMonth } from "@/lib/news";
 
 export default function FilteredNewsPage({ params }: { params: Params }): JSX.Element {
-  const filter = params.filter;
+  const filter = params.filter as (string | number)[];
+  // console.log("filter:", filter);
 
-  const selectedYear = filter?.[0];
-  const selectedMonth = filter?.[1];
+  const selectedYear = filter?.[0] as number;
+  const selectedMonth = filter?.[1] as number;
 
   let news;
-  let links = getAvailableNewsYears();
+  let links = getAvailableNewsYears() as number[];
+  // console.log({ links });
 
   if (selectedYear && !selectedMonth) {
-    news = getNewsForYear(selectedYear);
-    links = getAvailableNewsMonths(selectedYear);
+    news = getNewsForYear(selectedYear) as News[];
+    links = getAvailableNewsMonths(selectedYear) as number[];
   }
 
   if (selectedYear && selectedMonth) {
@@ -23,7 +25,7 @@ export default function FilteredNewsPage({ params }: { params: Params }): JSX.El
     links = [];
   }
 
-  let newsContent = <p>No news found for the selected period.</p>;
+  let newsContent: JSX.Element = <p>No news found for the selected period.</p>;
 
   if (news && news.length > 0) {
     newsContent = <NewsList news={news} />;
@@ -41,8 +43,9 @@ export default function FilteredNewsPage({ params }: { params: Params }): JSX.El
       <header id="archive-header">
         <nav>
           <ul>
-            {links.map((link) => {
+            {links.map((link: number) => {
               const href = selectedYear ? `/archive/${selectedYear}/${link}` : `/archive/${link}`;
+              // console.log({ href });
 
               return (
                 <li key={link}>
