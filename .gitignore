@@ -33,3 +33,4 @@ __generated__
 Temp/
 dev.db
 meals.db
+data.db
