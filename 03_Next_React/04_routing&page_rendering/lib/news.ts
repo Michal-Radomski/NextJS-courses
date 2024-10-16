@@ -6,7 +6,7 @@ const db = sql("data.db") as Database;
 
 export async function getAllNews(): Promise<News[]> {
   const news = db.prepare("SELECT * FROM news").all() as News[];
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve: (value: null) => void) => setTimeout(resolve, 2000));
   return news;
 }
 
