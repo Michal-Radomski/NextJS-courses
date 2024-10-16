@@ -2,11 +2,14 @@ import { notFound } from "next/navigation";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Link from "next/link";
 
-import { DUMMY_NEWS } from "@/dummy-news";
+import { getNewsItem } from "@/lib/news";
 
-export default function NewsDetailPage({ params }: { params: Params }): JSX.Element {
+// import { DUMMY_NEWS } from "@/dummy-news";
+
+export default async function NewsDetailPage({ params }: { params: Params }): Promise<JSX.Element> {
   const newsSlug = params.slug as string;
-  const newsItem = DUMMY_NEWS.find((newsItem: News) => newsItem.slug === newsSlug) as News;
+  // const newsItem = DUMMY_NEWS.find((newsItem: News) => newsItem.slug === newsSlug) as News;
+  const newsItem = (await getNewsItem(newsSlug)) as News;
 
   if (!newsItem) {
     notFound();

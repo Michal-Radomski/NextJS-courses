@@ -1,3 +1,3 @@
-export default function ModalDefaultPage(): JSX.Element {
-  return null as any;
+export default function ModalDefaultPage(): null {
+  return null;
 }

@@ -4,7 +4,7 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import NewsList from "@/components/news-list";
 import { getAvailableNewsMonths, getAvailableNewsYears, getNewsForYear, getNewsForYearAndMonth } from "@/lib/news";
 
-export default function FilteredNewsPage({ params }: { params: Params }): JSX.Element {
+export default async function FilteredNewsPage({ params }: { params: Params }): Promise<JSX.Element> {
   const filter = params.filter as (string | number)[];
   // console.log("filter:", filter);
 
@@ -12,16 +12,16 @@ export default function FilteredNewsPage({ params }: { params: Params }): JSX.El
   const selectedMonth = filter?.[1] as number;
 
   let news;
-  let links = getAvailableNewsYears() as number[];
+  let links = (await getAvailableNewsYears()) as number[];
   // console.log({ links });
 
   if (selectedYear && !selectedMonth) {
-    news = getNewsForYear(selectedYear) as News[];
+    news = (await getNewsForYear(selectedYear)) as News[];
     links = getAvailableNewsMonths(selectedYear) as number[];
   }
 
   if (selectedYear && selectedMonth) {
-    news = getNewsForYearAndMonth(selectedYear, selectedMonth);
+    news = (await getNewsForYearAndMonth(selectedYear, selectedMonth)) as News[];
     links = [];
   }
 
@@ -32,8 +32,8 @@ export default function FilteredNewsPage({ params }: { params: Params }): JSX.El
   }
 
   if (
-    (selectedYear && !getAvailableNewsYears().includes(+selectedYear)) ||
-    (selectedMonth && !getAvailableNewsMonths(selectedYear).includes(+selectedMonth))
+    (selectedYear && !(await getAvailableNewsYears()).includes(selectedYear)) ||
+    (selectedMonth && !getAvailableNewsMonths(selectedYear).includes(selectedMonth))
   ) {
     throw new Error("Invalid filter.");
   }

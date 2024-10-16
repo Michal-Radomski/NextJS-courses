@@ -1,8 +1,8 @@
 import NewsList from "@/components/news-list";
 import { getLatestNews } from "@/lib/news";
 
-export default function LatestNewsPage(): JSX.Element {
-  const latestNews = getLatestNews() as News[];
+export default async function LatestNewsPage(): Promise<JSX.Element> {
+  const latestNews = (await getLatestNews()) as News[];
 
   return (
     <>

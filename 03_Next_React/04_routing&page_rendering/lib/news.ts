@@ -10,8 +10,8 @@ export async function getAllNews(): Promise<News[]> {
   return news;
 }
 
-export async function getNewsItem(slug: string): Promise<string> {
-  const newsItem = db.prepare("SELECT * FROM news WHERE slug = ?").get(slug) as string;
+export async function getNewsItem(slug: string): Promise<News> {
+  const newsItem = db.prepare("SELECT * FROM news WHERE slug = ?").get(slug) as News;
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
