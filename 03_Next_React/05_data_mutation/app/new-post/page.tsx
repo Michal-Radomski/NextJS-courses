@@ -1,18 +1,24 @@
+import { redirect } from "next/navigation";
+
+import FormSubmit from "@/components/form-submit";
 import { storePost } from "@/lib/posts";
 
 export default function NewPostPage(): JSX.Element {
-  async function createPost(formData: FormData) {
+  async function createPost(formData: FormData): Promise<void> {
     "use server";
     const title = formData.get("title") as string;
-    const image = formData.get("image") as string;
+    const image = formData.get("image") as File;
     const content = formData.get("content") as string;
+    // console.log(image, title, content);
 
-    storePost({
+    await storePost({
       imageUrl: "",
       title,
       content,
       userId: 1,
     });
+
+    redirect("/feed");
   }
 
   return (
@@ -32,8 +38,7 @@ export default function NewPostPage(): JSX.Element {
           <textarea id="content" name="content" rows={5} />
         </p>
         <p className="form-actions">
-          <button type="reset">Reset</button>
-          <button>Create Post</button>
+          <FormSubmit />
         </p>
       </form>
     </>

@@ -1,7 +1,7 @@
 interface Post {
   userId: string | number;
   imageUrl: string;
-  image?: string;
+  image?: string | File;
   userFirstName?: string;
   createdAt?: string;
   id?: number;
