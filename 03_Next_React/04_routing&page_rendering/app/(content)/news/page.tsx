@@ -1,15 +1,19 @@
 //* V2
 // import { DUMMY_NEWS } from "@/dummy-news";
 import NewsList from "@/components/news-list";
+import { getAllNews } from "@/lib/news";
 
 export default async function NewsPage(): Promise<JSX.Element> {
-  const response: Response = await fetch("http://localhost:8080/news");
+  // const response: Response = await fetch("http://localhost:8080/news");
 
-  if (!response.ok) {
-    throw new Error("Failed tho fetch news.");
-  }
+  // if (!response.ok) {
+  //   throw new Error("Failed tho fetch news.");
+  // }
 
-  const news = (await response.json()) as News[];
+  // const news = (await response.json()) as News[];
+
+  //* V3
+  const news = (await getAllNews()) as News[];
 
   return (
     <>
