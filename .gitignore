@@ -31,6 +31,8 @@ notes.txt
 *.graphqls.d.ts
 __generated__
 Temp/
-dev.db
-meals.db
-data.db
+# dev.db
+# meals.db
+# data.db
+# posts.db
+*.db

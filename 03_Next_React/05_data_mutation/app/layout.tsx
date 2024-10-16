@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 
 import "./globals.scss";
+import Header from "@/components/header";
 
 export const metadata: Metadata = {
-  title: "Next.js course",
-  description: "Next.js course",
+  title: "NextPosts",
+  description: "Browse and share amazing posts.",
 };
 
 export default function RootLayout({
@@ -15,7 +16,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="" suppressHydrationWarning={true}>
-        {children}
+        <Header />
+        <main>{children}</main>
       </body>
     </html>
   );
