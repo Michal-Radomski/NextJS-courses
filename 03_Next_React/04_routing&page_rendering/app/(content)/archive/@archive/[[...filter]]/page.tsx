@@ -67,8 +67,8 @@ export default async function FilteredNewsPage({ params }: { params: Params }): 
 
   return (
     <>
-      {/* <Suspense fallback={<p>Loading filter...</p>}>
-      </Suspense> */}
+      {/* <React.Suspense fallback={<p>Loading filter...</p>}>
+      </React.Suspense> */}
       <React.Suspense fallback={<p>Loading news...</p>}>
         <FilterHeader year={selectedYear} month={selectedMonth} />
         <FilteredNews year={selectedYear} month={selectedMonth} />
