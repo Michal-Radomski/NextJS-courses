@@ -33,7 +33,7 @@ function initDb(): void {
 
   // Creating two dummy users if they don't exist already
   const stmt = db.prepare("SELECT COUNT(*) AS count FROM users") as Statement<User[], any>;
-  console.log("stmt:", stmt);
+  // console.log("stmt:", stmt);
 
   if (stmt.get().count === 0) {
     db.exec(`
@@ -82,8 +82,8 @@ export async function updatePostLikeStatus(postId: string, userId: string): Prom
   const stmt = db.prepare(`
     SELECT COUNT(*) AS count
     FROM likes
-    WHERE user_id = ? AND post_id = ?`) as any;
-  console.log("stmt:", stmt);
+    WHERE user_id = ? AND post_id = ?`) as Statement<[string, string], any>;
+  // console.log("stmt:", stmt);
 
   const isLiked = (stmt.get(userId, postId).count === 0) as boolean;
 

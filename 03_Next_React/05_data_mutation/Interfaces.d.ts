@@ -1,13 +1,13 @@
 interface Post {
-  userId: string;
+  userId: string | number;
   imageUrl: string;
-  image: string;
-  userFirstName: string;
-  createdAt: string;
-  id: number;
+  image?: string;
+  userFirstName?: string;
+  createdAt?: string;
+  id?: number;
   title: string;
   content: string;
-  user_id: number;
+  user_id?: number;
 }
 
 interface User {

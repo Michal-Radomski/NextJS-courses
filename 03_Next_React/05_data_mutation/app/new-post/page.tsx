@@ -3,9 +3,9 @@ import { storePost } from "@/lib/posts";
 export default function NewPostPage(): JSX.Element {
   async function createPost(formData: FormData) {
     "use server";
-    const title = formData.get("title") as FormDataEntryValue | string;
-    const image = formData.get("image") as FormDataEntryValue | string;
-    const content = formData.get("content") as FormDataEntryValue | string;
+    const title = formData.get("title") as string;
+    const image = formData.get("image") as string;
+    const content = formData.get("content") as string;
 
     storePost({
       imageUrl: "",
