@@ -50,7 +50,7 @@ function initDb(): void {
 
 initDb();
 
-export async function getPosts(maxNumber: string | number): Promise<Post[]> {
+export async function getPosts(maxNumber?: string | number): Promise<Post[]> {
   let limitClause = "";
 
   if (maxNumber) {
