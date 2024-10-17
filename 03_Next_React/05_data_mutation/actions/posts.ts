@@ -34,10 +34,10 @@ export async function createPost(
     return { errors };
   }
 
-  let imageUrl;
+  let imageUrl: string;
 
   try {
-    imageUrl = await uploadImage(image);
+    imageUrl = (await uploadImage(image)) as string;
   } catch (error) {
     throw new Error("Image upload failed, post was not created. Please try again later.");
   }

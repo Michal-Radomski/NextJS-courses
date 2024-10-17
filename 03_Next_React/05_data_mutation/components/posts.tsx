@@ -1,22 +1,29 @@
+"use client";
+
+import { useOptimistic } from "react";
+
 import { formatDate } from "@/lib/format";
 import LikeButton from "./like-icon";
+import { togglePostLikeStatus } from "@/actions/posts";
 
-function Post({ post }: { post: Post }): JSX.Element {
+function Post({ post, action }: { post: Post; action: Function }): JSX.Element {
   return (
     <article className="post">
       <div className="post-image">
-        <img src={post.image} alt={post.title} />
+        <img src={post.image as string} alt={post.title} />
       </div>
       <div className="post-content">
         <header>
           <div>
             <h2>{post.title}</h2>
             <p>
-              Shared by {post.userFirstName} on <time dateTime={post.createdAt}>{formatDate(post.createdAt)}</time>
+              Shared by {post.userFirstName} on <time dateTime={post.createdAt}>{formatDate(post.createdAt!)}</time>
             </p>
           </div>
           <div>
-            <LikeButton />
+            <form action={action.bind(null, post.id)} className={post.isLiked ? "liked" : ""}>
+              <LikeButton />
+            </form>
           </div>
         </header>
         <p>{post.content}</p>
@@ -26,15 +33,35 @@ function Post({ post }: { post: Post }): JSX.Element {
 }
 
 export default function Posts({ posts }: { posts: Post[] }): JSX.Element {
-  if (!posts || posts.length === 0) {
+  const [optimisticPosts, updateOptimisticPosts] = useOptimistic(posts, (prevPosts, updatedPostId) => {
+    const updatedPostIndex = prevPosts.findIndex((post: Post) => post.id === updatedPostId);
+
+    if (updatedPostIndex === -1) {
+      return prevPosts;
+    }
+
+    const updatedPost = { ...prevPosts[updatedPostIndex] } as Post;
+    updatedPost.likes = updatedPost.likes! + (updatedPost.isLiked ? -1 : 1);
+    updatedPost.isLiked = !updatedPost.isLiked;
+    const newPosts = [...prevPosts];
+    newPosts[updatedPostIndex] = updatedPost;
+    return newPosts;
+  });
+
+  if (!optimisticPosts || optimisticPosts.length === 0) {
     return <p>There are no posts yet. Maybe start sharing some?</p>;
+  }
+
+  async function updatePost(postId: string): Promise<void> {
+    updateOptimisticPosts(postId);
+    await togglePostLikeStatus(postId);
   }
 
   return (
     <ul className="posts">
-      {posts.map((post: Post) => (
+      {optimisticPosts.map((post: Post) => (
         <li key={post.id}>
-          <Post post={post} />
+          <Post post={post} action={updatePost} />
         </li>
       ))}
     </ul>

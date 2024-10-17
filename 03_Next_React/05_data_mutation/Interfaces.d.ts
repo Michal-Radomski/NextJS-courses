@@ -1,4 +1,6 @@
 interface Post {
+  likes?: number;
+  isLiked?: boolean;
   userId: string | number;
   imageUrl: string;
   image?: string | File;
