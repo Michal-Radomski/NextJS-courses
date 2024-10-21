@@ -89,5 +89,5 @@ app.get("/news", (_req, res) => {
 initDb();
 
 app.listen(8080, (): void => {
-  console.log("Server HTTPS is listening...");
+  console.log("Server HTTP is listening...");
 });
