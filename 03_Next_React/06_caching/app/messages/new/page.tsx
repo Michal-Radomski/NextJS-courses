@@ -8,9 +8,9 @@ export default function NewMessagePage(): JSX.Element {
     "use server";
 
     const message = formData.get("message") as FormDataEntryValue;
-    console.log("message:", message);
+    // console.log("message:", message);
     addMessage(message);
-    // revalidatePath('/messages');
+    // revalidatePath('/messages'); //* default "page" - page only, "layout" page + subpages
     revalidateTag("msg");
     redirect("/messages");
   }
