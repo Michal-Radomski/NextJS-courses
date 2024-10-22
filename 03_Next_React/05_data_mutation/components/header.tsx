@@ -9,7 +9,14 @@ export default function Header(): JSX.Element {
     <header id="main-header">
       <Link href="/">
         {/* <img src={logo.src} alt="Mobile phone with posts feed on it" /> */}
-        <Image src={logo} width={100} height={100} priority={true} alt="Mobile phone with posts feed on it" />
+        <Image
+          src={logo}
+          // sizes="10vw"
+          width={100}
+          height={100}
+          priority={true}
+          alt="Mobile phone with posts feed on it"
+        />
       </Link>
       <nav>
         <ul>

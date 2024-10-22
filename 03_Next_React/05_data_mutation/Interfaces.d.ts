@@ -20,3 +20,7 @@ interface User {
   userLastName: string;
   email: string;
 }
+
+interface ObjectI {
+  [key: string]: string | number;
+}
