@@ -1,7 +1,14 @@
 import { Suspense } from "react";
+import { Metadata } from "next";
 
 import Posts from "@/components/posts";
 import { getPosts } from "@/lib/posts";
+
+
+export const metadata:Metadata = {
+  title: 'Latest Posts',
+  description: 'Browse our latest posts!'
+};
 
 async function LatestPosts(): Promise<JSX.Element> {
   const latestPosts = (await getPosts(2)) as Post[];
