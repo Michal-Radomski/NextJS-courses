@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-export default function AuthForm() {
+export default function AuthForm(): JSX.Element {
   return (
     <form id="auth-form">
       <div>
@@ -15,9 +15,7 @@ export default function AuthForm() {
         <input type="password" name="password" id="password" />
       </p>
       <p>
-        <button type="submit">
-          Create Account
-        </button>
+        <button type="submit">Create Account</button>
       </p>
       <p>
         <Link href="/">Login with existing account.</Link>
