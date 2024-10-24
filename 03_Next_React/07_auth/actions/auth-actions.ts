@@ -1,11 +1,11 @@
 "use server";
 import { redirect } from "next/navigation";
 
-import { hashUserPassword } from "@/lib/hash";
-import { createUser } from "@/lib/user";
-import { createAuthSession } from "@/lib/auth";
+import { hashUserPassword, verifyPassword } from "@/lib/hash";
+import { createUser, getUserByEmail } from "@/lib/user";
+import { createAuthSession, destroySession } from "@/lib/auth";
 
-export async function signup(_prevState: FormData, formData: FormData) {
+export async function signup(_prevState: FormData, formData: FormData): Promise<any> {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 
@@ -42,42 +42,42 @@ export async function signup(_prevState: FormData, formData: FormData) {
   }
 }
 
-// export async function login(prevState, formData) {
-//   const email = formData.get('email');
-//   const password = formData.get('password');
+export async function login(_prevState: FormData, formData: FormData): Promise<any> {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
 
-//   const existingUser = getUserByEmail(email);
+  const existingUser: UserI = getUserByEmail(email);
 
-//   if (!existingUser) {
-//     return {
-//       errors: {
-//         email: 'Could not authenticate user, please check your credentials.',
-//       },
-//     };
-//   }
+  if (!existingUser) {
+    return {
+      errors: {
+        email: "Could not authenticate user, please check your credentials.",
+      },
+    };
+  }
 
-//   const isValidPassword = verifyPassword(existingUser.password, password);
+  const isValidPassword: boolean = verifyPassword(existingUser.password, password);
 
-//   if (!isValidPassword) {
-//     return {
-//       errors: {
-//         password: 'Could not authenticate user, please check your credentials.',
-//       },
-//     };
-//   }
+  if (!isValidPassword) {
+    return {
+      errors: {
+        password: "Could not authenticate user, please check your credentials.",
+      },
+    };
+  }
 
-//   await createAuthSession(existingUser.id);
-//   redirect('/training');
-// }
+  await createAuthSession(existingUser.id as number);
+  redirect("/training");
+}
 
-// export async function auth(mode, prevState, formData) {
-//   if (mode === 'login') {
-//     return login(prevState, formData);
-//   }
-//   return signup(prevState, formData);
-// }
+export async function auth(mode: string, prevState: FormData, formData: FormData): Promise<Function> {
+  if (mode === "login") {
+    return login(prevState, formData) as unknown as Function;
+  }
+  return signup(prevState, formData) as unknown as Function;
+}
 
-// export async function logout() {
-//   await destroySession();
-//   redirect('/');
-// }
+export async function logout(): Promise<void> {
+  await destroySession();
+  redirect("/");
+}

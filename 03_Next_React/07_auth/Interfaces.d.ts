@@ -13,3 +13,9 @@ interface Errors {
 interface CustomError extends Error {
   code: string;
 }
+
+interface UserI {
+  email: string;
+  password: string;
+  id: string | number;
+}
