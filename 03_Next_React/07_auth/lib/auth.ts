@@ -18,11 +18,12 @@ const lucia = new Lucia(adapter, {
     },
   },
 });
+// console.log("lucia:", lucia);
 
 export async function createAuthSession(userId: number): Promise<void> {
   const session: Session = await lucia.createSession(String(userId), {});
   const sessionCookie: Cookie = lucia.createSessionCookie(session.id);
-  console.log({ session, sessionCookie });
+  // console.log({ session, sessionCookie });
 
   (await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 }
@@ -66,7 +67,9 @@ export async function verifyAuth(): Promise<
       const sessionCookie = lucia.createBlankSessionCookie();
       cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
     }
-  } catch {}
+  } catch (error) {
+    console.log("error:", error);
+  }
 
   return result;
 }

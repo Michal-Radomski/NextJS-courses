@@ -1,7 +1,25 @@
+import { redirect } from "next/navigation";
+import { Session, User } from "lucia";
+
+import { verifyAuth } from "@/lib/auth";
 import { getTrainings } from "@/lib/training";
 
 export default async function TrainingPage(): Promise<JSX.Element> {
   const trainingSessions = getTrainings() as Training[];
+
+  const result = (await verifyAuth()) as
+    | {
+        user: User;
+        session: Session;
+      }
+    | {
+        user: null;
+        session: null;
+      };
+
+  if (!result.user) {
+    return redirect("/");
+  }
 
   return (
     <main>
