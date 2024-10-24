@@ -1,8 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { useFormState } from "react-dom";
+
+import { signup } from "@/actions/auth-actions";
 
 export default function AuthForm(): JSX.Element {
+  const [formState, formAction] = useFormState(signup as any, {} as { errors: Errors });
   return (
-    <form id="auth-form">
+    <form id="auth-form" action={formAction}>
       <div>
         <img src="/images/auth-icon.jpg" alt="A lock icon" />
       </div>
@@ -14,6 +20,13 @@ export default function AuthForm(): JSX.Element {
         <label htmlFor="password">Password</label>
         <input type="password" name="password" id="password" />
       </p>
+      {formState?.errors && (
+        <ul id="form-errors">
+          {Object.keys(formState.errors).map((error) => (
+            <li key={error}>{formState?.errors[error as keyof Errors]}</li>
+          ))}
+        </ul>
+      )}
       <p>
         <button type="submit">Create Account</button>
       </p>
