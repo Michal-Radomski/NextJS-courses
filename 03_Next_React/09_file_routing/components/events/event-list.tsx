@@ -1,5 +1,6 @@
 import EventItem from "./event-item";
 import classes from "./event-list.module.scss";
+// console.log("classes:", classes);
 
 function EventList(props: { items: EventI[] }): JSX.Element {
   const { items } = props;

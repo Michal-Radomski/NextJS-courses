@@ -12,8 +12,8 @@ function EventItem(props: EventI): JSX.Element {
     month: "long",
     year: "numeric",
   });
-  const formattedAddress = location.replace(", ", "\n");
-  const exploreLink = `/events/${id}`;
+  const formattedAddress: string = location.replace(", ", "\n");
+  const exploreLink: string = `/events/${id}`;
 
   return (
     <li className={classes.item}>
