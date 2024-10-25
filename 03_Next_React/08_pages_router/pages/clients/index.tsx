@@ -10,18 +10,21 @@ function ClientsPage(): JSX.Element {
     <div>
       <h1>The Clients Page</h1>
       <ul>
-        {clients.map((client) => (
-          <li key={client.id}>
-            <Link
-              href={{
-                pathname: "/clients/[id]",
-                query: { id: client.id },
-              }}
-            >
-              {client.name}
-            </Link>
-          </li>
-        ))}
+        {clients.map(
+          (client: { id: string; name: string }): JSX.Element => (
+            <li key={client.id}>
+              <Link
+                href={`/clients/${client.id}`} //* V1
+                // href={{
+                //   pathname: "/clients/[id]", //* V2
+                //   query: { id: client.id },
+                // }}
+              >
+                {client.name}
+              </Link>
+            </li>
+          )
+        )}
       </ul>
     </div>
   );

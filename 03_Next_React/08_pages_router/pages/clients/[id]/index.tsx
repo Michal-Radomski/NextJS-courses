@@ -7,6 +7,7 @@ function ClientProjectsPage(): JSX.Element {
 
   function loadProjectHandler(): void {
     // load data...
+    // router.replace -> can't go back!
     router.push({
       pathname: "/clients/[id]/[clientprojectid]",
       query: { id: "max", clientprojectid: "projecta" },
@@ -16,7 +17,9 @@ function ClientProjectsPage(): JSX.Element {
   return (
     <div>
       <h1>The Projects of a Given Client</h1>
-      <button onClick={loadProjectHandler}>Load Project A</button>
+      <button onClick={loadProjectHandler} className="btn btn-primary">
+        Load Project A
+      </button>
     </div>
   );
 }

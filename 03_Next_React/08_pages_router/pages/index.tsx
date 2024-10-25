@@ -6,10 +6,16 @@ function HomePage(): JSX.Element {
       <h1>The Home Page</h1>
       <ul>
         <li>
-          <Link href="/portfolio">Portfolio</Link>
+          {/* //* replace - can't go back! */}
+          <Link href="/portfolio" replace={false}>
+            Portfolio
+          </Link>
         </li>
         <li>
           <Link href="/clients">Clients</Link>
+        </li>
+        <li>
+          <Link href="/blog">Blog</Link>
         </li>
       </ul>
     </div>
