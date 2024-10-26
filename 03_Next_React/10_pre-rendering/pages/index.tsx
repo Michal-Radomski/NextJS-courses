@@ -1,11 +1,53 @@
-export default function HomePage(props: any): JSX.Element {
-  console.log("props:", props);
+import path from "path";
+import fs from "fs/promises";
+
+import Link from "next/link";
+
+function HomePage(props: { products: Product[] }): JSX.Element {
+  const { products }: { products: Product[] } = props;
 
   return (
     <ul>
-      <li>Product 1</li>
-      <li>Product 2</li>
-      <li>Product 3</li>
+      {products.map(
+        (product: Product): JSX.Element => (
+          <li key={product.id}>
+            <Link href={`/products/${product.id}`}>{product.title}</Link>
+          </li>
+        )
+      )}
     </ul>
   );
 }
+
+export const getStaticProps = async (_context: object): Promise<any> => {
+  // console.log("_context:", _context);
+  // console.log("(Re-)Generating...");
+
+  const filePath: string = path.join(process.cwd(), "data", "dummy-backend.json");
+  const jsonData: Buffer = await fs.readFile(filePath);
+  // console.log("jsonData:", jsonData);
+
+  const data = JSON.parse(jsonData.toString());
+  // console.log("data:", data);
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/no-data",
+      },
+    };
+  }
+
+  if (data.products.length === 0) {
+    return { notFound: true };
+  }
+
+  return {
+    props: {
+      products: data.products,
+    },
+    revalidate: 10,
+  };
+};
+
+export default HomePage;
