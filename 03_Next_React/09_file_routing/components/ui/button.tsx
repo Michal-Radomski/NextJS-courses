@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import classes from "./button.module.scss";
 
-function Button(props: { link: string; children: React.ReactNode; onClick?: () => void }): JSX.Element {
+function Button(props: { link?: string; children: React.ReactNode; onClick?: () => void }): JSX.Element {
   if (props.link) {
     return (
       <Link href={props.link} className={classes.btn}>
