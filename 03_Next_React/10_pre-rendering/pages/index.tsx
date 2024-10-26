@@ -19,9 +19,12 @@ function HomePage(props: { products: Product[] }): JSX.Element {
   );
 }
 
+//* Never visible on client-side - can use credentials etc!
 export const getStaticProps = async (_context: object): Promise<any> => {
   // console.log("_context:", _context);
   // console.log("(Re-)Generating...");
+
+  // console.log("process:", process);
 
   const filePath: string = path.join(process.cwd(), "data", "dummy-backend.json");
   const jsonData: Buffer = await fs.readFile(filePath);
