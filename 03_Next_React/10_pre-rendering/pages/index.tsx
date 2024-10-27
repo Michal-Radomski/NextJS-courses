@@ -29,7 +29,7 @@ export const getStaticProps = async (_context: object): Promise<any> => {
   const jsonData: Buffer = await fs.readFile(filePath);
   // console.log("jsonData:", jsonData);
 
-  const data = JSON.parse(jsonData.toString());
+  const data = JSON.parse(jsonData.toString()) as { products: Product[] };
   // console.log("data:", data);
 
   if (!data) {
@@ -46,7 +46,7 @@ export const getStaticProps = async (_context: object): Promise<any> => {
 
   return {
     props: {
-      products: data.products,
+      products: data.products as Product[],
     },
     revalidate: 10, //* Every 10s regenerate page
   };

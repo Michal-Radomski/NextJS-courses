@@ -27,13 +27,13 @@ async function getData(): Promise<{ products: Product[] }> {
   return data;
 }
 
-export async function getStaticProps(context: { params: Params }) {
+export async function getStaticProps(context: { params: Params }): Promise<any> {
   const { params } = context;
 
-  const productId = params.pid;
+  const productId: string = params.pid;
 
   const data = (await getData()) as { products: Product[] };
-  const product = data.products.find((product: Product) => product.id === productId);
+  const product = data.products.find((product: Product) => product.id === productId) as Product;
 
   if (!product) {
     return { notFound: true };
@@ -54,7 +54,7 @@ export async function getStaticPaths(): Promise<any> {
 
   return {
     paths: pathsWithParams,
-    fallback: true,
+    fallback: true, //* Can be: "blocking" or false
   };
 }
 
