@@ -23,7 +23,6 @@ function HomePage(props: { products: Product[] }): JSX.Element {
 export const getStaticProps = async (_context: object): Promise<any> => {
   // console.log("_context:", _context);
   // console.log("(Re-)Generating...");
-
   // console.log("process:", process);
 
   const filePath: string = path.join(process.cwd(), "data", "dummy-backend.json");
@@ -49,7 +48,7 @@ export const getStaticProps = async (_context: object): Promise<any> => {
     props: {
       products: data.products,
     },
-    revalidate: 10,
+    revalidate: 10, //* Every 10s regenerate page
   };
 };
 
