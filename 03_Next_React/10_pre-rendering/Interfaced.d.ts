@@ -3,3 +3,9 @@ interface Product {
   title: string;
   description: string;
 }
+
+interface Sale {
+  id: string;
+  volume: number;
+  username: string;
+}
