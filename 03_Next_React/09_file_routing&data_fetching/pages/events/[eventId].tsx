@@ -5,7 +5,7 @@ import React from "react";
 import EventSummary from "../../components/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
-import ErrorAlert from "../../components/ui/error-alert";
+// import ErrorAlert from "../../components/ui/error-alert";
 import { getEventById, getFeaturedEvents } from "../../helpers/api-util";
 
 const EventDetailPage = (props: { selectedEvent: EventI }): JSX.Element => {
@@ -13,29 +13,32 @@ const EventDetailPage = (props: { selectedEvent: EventI }): JSX.Element => {
   // const eventId = router.query.eventId as string;
   // const event: EventI = getEventById(eventId);
 
-  const event: EventI = props.selectedEvent;
+  const event: EventI = props?.selectedEvent;
 
   if (!event) {
     return (
-      <ErrorAlert>
-        <p>No event found!</p>
-      </ErrorAlert>
+      // <ErrorAlert>
+      //   <p>No event found!</p>
+      // </ErrorAlert>
+      <div className="center">
+        <p>Loading...</p>
+      </div>
     );
   }
 
   return (
     <React.Fragment>
-      <EventSummary title={event.title} />
-      <EventLogistics date={event.date} address={event.location} image={event.image} imageAlt={event.title} />
+      <EventSummary title={event?.title} />
+      <EventLogistics date={event?.date} address={event?.location} image={event?.image} imageAlt={event?.title} />
       <EventContent>
-        <p>{event.description}</p>
+        <p>{event?.description}</p>
       </EventContent>
     </React.Fragment>
   );
 };
 
 export async function getStaticProps(context: { params: { eventId: string } }): Promise<any> {
-  const eventId = context.params.eventId;
+  const eventId = context?.params?.eventId;
 
   const event: EventI = await getEventById(eventId);
 
@@ -44,17 +47,18 @@ export async function getStaticProps(context: { params: { eventId: string } }): 
       selectedEvent: event,
     },
     revalidate: 30,
+    notFound: Boolean(!event ? true : false),
   };
 }
 
 export async function getStaticPaths(): Promise<any> {
   const events: EventI[] = await getFeaturedEvents();
 
-  const paths = events.map((event: EventI) => ({ params: { eventId: event.id } }));
+  const paths = events?.map((event: EventI) => ({ params: { eventId: event?.id } }));
 
   return {
     paths: paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
 
