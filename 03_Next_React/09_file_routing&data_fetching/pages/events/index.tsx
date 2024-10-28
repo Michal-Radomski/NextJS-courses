@@ -13,7 +13,7 @@ const AllEventsPage = (props: { events: EventI[] }): JSX.Element => {
   const { events } = props;
 
   function findEventsHandler(year: string, month: string): void {
-    const fullPath = `/events/${year}/${month}`;
+    const fullPath: string = `/events/${year}/${month}`;
 
     router.push(fullPath);
   }
