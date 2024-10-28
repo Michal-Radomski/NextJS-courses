@@ -59,16 +59,18 @@ function LastSalesPage(props: { sales: Sale[] }): JSX.Element {
 
   return (
     <ul>
-      {sales.map((sale: Sale) => (
-        <li key={sale?.id}>
-          {sale?.username} - ${sale?.volume}
-        </li>
-      ))}
+      {sales.map(
+        (sale: Sale): JSX.Element => (
+          <li key={sale?.id}>
+            {sale?.username} - ${sale?.volume}
+          </li>
+        )
+      )}
     </ul>
   );
 }
 
-export async function getStaticProps(): Promise<{ props: { sales: Sale[] } }> {
+export async function getStaticProps(): Promise<{ props: { sales: Sale[] }; revalidate?: number }> {
   const response: Response = await fetch(url);
   const data: Sale[] = await response.json();
 
@@ -82,7 +84,7 @@ export async function getStaticProps(): Promise<{ props: { sales: Sale[] } }> {
     });
   }
 
-  return { props: { sales: transformedSales } };
+  return { props: { sales: transformedSales }, revalidate: 10 };
 }
 
 export default LastSalesPage;
