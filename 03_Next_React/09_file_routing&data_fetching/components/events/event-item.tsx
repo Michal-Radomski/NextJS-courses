@@ -12,7 +12,7 @@ function EventItem(props: EventI): JSX.Element {
     month: "long",
     year: "numeric",
   });
-  const formattedAddress: string = location.replace(", ", "\n");
+  const formattedAddress: string = location?.replace(", ", "\n");
   const exploreLink: string = `/events/${id}`;
 
   return (

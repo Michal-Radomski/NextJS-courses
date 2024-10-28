@@ -4,10 +4,11 @@ import classes from "./event-list.module.scss";
 
 function EventList(props: { items: EventI[] }): JSX.Element {
   const { items } = props;
+  // console.log("items:", items);
 
   return (
     <ul className={classes.list}>
-      {items.map(
+      {items?.map(
         (event: EventI): JSX.Element => (
           <EventItem
             key={event.id}
