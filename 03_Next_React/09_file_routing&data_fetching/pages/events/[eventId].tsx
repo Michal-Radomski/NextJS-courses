@@ -1,5 +1,6 @@
 import React from "react";
 // import { useRouter } from "next/router";
+import Head from "next/head";
 
 // import { getEventById } from "../../dummy-data";
 import EventSummary from "../../components/event-detail/event-summary";
@@ -28,6 +29,11 @@ const EventDetailPage = (props: { selectedEvent: EventI }): JSX.Element => {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>{event.title}</title>
+        <meta name="description" content={event.description} />
+      </Head>
+
       <EventSummary title={event?.title} />
       <EventLogistics date={event?.date} address={event?.location} image={event?.image} imageAlt={event?.title} />
       <EventContent>
