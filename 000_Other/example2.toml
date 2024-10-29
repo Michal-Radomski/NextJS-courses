@@ -49,6 +49,8 @@ mode = "production" # Options: development, testing, production
 debug_mode = false
 
 [settings]
+timeout = 30
+retries = 3
 max_upload_size_mb = 10
 session_timeout_minutes = 30
 
@@ -63,7 +65,3 @@ version = "0.2.5"
 [dependencies]
 requests = ">=2.25.1"
 numpy = "~=1.21.0"
-
-[settings]
-timeout = 30
-retries = 3
