@@ -3,7 +3,3 @@ interface Feedback {
   email: string;
   text: string;
 }
-
-interface ObjectI {
-  [key: string]: string;
-}

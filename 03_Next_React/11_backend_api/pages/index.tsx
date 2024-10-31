@@ -3,14 +3,14 @@ import React from "react";
 function HomePage(): JSX.Element {
   const [feedbackItems, setFeedbackItems] = React.useState<Feedback[]>([]);
 
-  const emailInputRef = React.useRef<HTMLInputElement>(null);
-  const feedbackInputRef = React.useRef<HTMLTextAreaElement>(null);
+  const emailInputRef: React.RefObject<HTMLInputElement> = React.useRef<HTMLInputElement>(null);
+  const feedbackInputRef: React.RefObject<HTMLTextAreaElement> = React.useRef<HTMLTextAreaElement>(null);
 
   function submitFormHandler(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current?.value;
-    const enteredFeedback = feedbackInputRef.current?.value;
+    const enteredEmail = emailInputRef.current?.value as string;
+    const enteredFeedback = feedbackInputRef.current?.value as string;
 
     const reqBody = { email: enteredEmail, text: enteredFeedback };
 
@@ -22,15 +22,17 @@ function HomePage(): JSX.Element {
       },
     })
       .then((response: Response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log("data:", data))
+      .catch((err) => console.log("err:", err));
   }
 
   function loadFeedbackHandler(): void {
     fetch("/api/feedback")
-      .then((response) => response.json())
+      .then((response: Response) => response.json())
       .then((data) => {
-        setFeedbackItems(data.feedback);
-      });
+        setFeedbackItems(data.feedback as Feedback[]);
+      })
+      .catch((err) => console.log("err:", err));
   }
 
   return (
