@@ -7,10 +7,11 @@ function FeedbackPage(props: { feedbackItems: Feedback[] }): JSX.Element {
 
   function loadFeedbackHandler(id: string): void {
     fetch(`/api/feedback/${id}`)
-      .then((response) => response.json())
+      .then((response: Response) => response.json())
       .then((data) => {
         setFeedbackData(data.feedback);
-      }); // /api/some-feedback-id
+      })
+      .catch((err) => console.log("err:", err));
   }
 
   return (
