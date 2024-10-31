@@ -3,12 +3,12 @@ import React from "react";
 import classes from "./newsletter-registration.module.scss";
 
 function NewsletterRegistration(): JSX.Element {
-  const emailInputRef = React.useRef<HTMLInputElement>(null);
+  const emailInputRef: React.RefObject<HTMLInputElement> = React.useRef<HTMLInputElement>(null);
 
   function registrationHandler(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current?.value;
+    const enteredEmail = emailInputRef.current?.value as string;
 
     fetch("/api/newsletter", {
       method: "POST",

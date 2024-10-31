@@ -1,9 +1,7 @@
 import { Db, InsertOneResult, MongoClient, WithId } from "mongodb";
 
 export async function connectDatabase(): Promise<MongoClient> {
-  const client: MongoClient = await MongoClient.connect(
-    "mongodb+srv://maximilian:8ZO3ycZqJ23kWBQx@cluster0.ntrwp.mongodb.net/events?retryWrites=true&w=majority"
-  );
+  const client: MongoClient = await MongoClient.connect(process.env.MONG0_URL as string);
 
   return client;
 }
