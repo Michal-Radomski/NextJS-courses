@@ -10,8 +10,8 @@ interface EventI {
 
 interface CommentI {
   email: string;
-  text: string;
-  name: string;
+  text?: string;
+  name?: string;
   _id?: Key | string;
   id?: string;
 }
