@@ -17,7 +17,7 @@ interface CommentI {
   id?: string;
 }
 
-interface Notification {
+interface NotificationI {
   title: string;
   message: string;
   // status: string;
@@ -25,7 +25,7 @@ interface Notification {
 }
 
 interface NotificationContextI {
-  notification: Notification | null;
-  showNotification: (notificationData: Notification) => void;
+  notification: NotificationI | null;
+  showNotification: (notificationData: NotificationI) => void;
   hideNotification: () => void;
 }
