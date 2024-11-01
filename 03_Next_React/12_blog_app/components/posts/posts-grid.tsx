@@ -6,9 +6,11 @@ function PostsGrid(props: { posts: Post[] }): JSX.Element {
 
   return (
     <ul className={classes.grid}>
-      {posts.map((post: Post) => (
-        <PostItem key={post.slug} post={post} />
-      ))}
+      {posts.map(
+        (post: Post): JSX.Element => (
+          <PostItem key={post.slug} post={post} />
+        )
+      )}
     </ul>
   );
 }

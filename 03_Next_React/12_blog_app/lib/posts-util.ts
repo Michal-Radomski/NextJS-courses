@@ -31,7 +31,7 @@ export function getAllPosts(): Post[] {
     return getPostData(postFile);
   });
 
-  const sortedPosts: Post[] = allPosts.sort((postA: Post, postB: Post) => (postA.date > postB.date ? -1 : 1));
+  const sortedPosts: Post[] = allPosts.sort((postA: Post, postB: Post) => (postA.date! > postB.date! ? -1 : 1));
 
   return sortedPosts;
 }

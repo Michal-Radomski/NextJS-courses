@@ -6,7 +6,7 @@ import classes from "./post-item.module.scss";
 function PostItem(props: { post: Post }): JSX.Element {
   const { title, image, excerpt, date, slug } = props.post;
 
-  const formattedDate: string = new Date(date).toLocaleDateString("en-US", {
+  const formattedDate: string = new Date(date as Date).toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
