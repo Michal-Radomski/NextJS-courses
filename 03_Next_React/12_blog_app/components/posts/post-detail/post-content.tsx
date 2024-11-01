@@ -12,7 +12,7 @@ function PostContent(props: { post: Post }): JSX.Element {
   const imagePath: string = `/images/posts/${post.slug}/${post.image}`;
 
   const customRenderers = {
-    // img(image: { src: string; alt: string }): JSX.Element {
+    // img(image: any): JSX.Element {
     //   return <Image src={`/images/posts/${post.slug}/${image.src}`} alt={image.alt} width={600} height={300} />;
     // },
 

@@ -15,6 +15,7 @@ export default function Document(): JSX.Element {
       <body>
         <Main />
         <NextScript />
+        <div id="notifications"></div>
       </body>
     </Html>
   );
