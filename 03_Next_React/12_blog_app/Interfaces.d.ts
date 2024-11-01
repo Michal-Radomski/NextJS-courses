@@ -8,8 +8,16 @@ interface Post {
   excerpt?: string;
 }
 
-interface Notification {
+type Status = "success" | "error" | "pending";
+
+interface NotificationI {
   title: string;
   message: string;
-  status: "success" | "error" | "pending";
+  status: Status;
+}
+
+interface Contact {
+  email: string;
+  name: string;
+  message: string;
 }

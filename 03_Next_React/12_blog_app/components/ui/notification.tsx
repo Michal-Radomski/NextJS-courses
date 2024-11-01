@@ -2,16 +2,16 @@ import ReactDOM from "react-dom";
 
 import classes from "./notification.module.scss";
 
-function Notification(props: Notification): JSX.Element {
+function Notification(props: NotificationI): JSX.Element {
   const { title, message, status } = props;
 
-  let statusClasses = "";
+  let statusClasses: string = "";
 
-  if (status === "success") {
+  if (status === ("success" as Status)) {
     statusClasses = classes.success;
   }
 
-  if (status === "error") {
+  if (status === ("error" as Status)) {
     statusClasses = classes.error;
   }
 
