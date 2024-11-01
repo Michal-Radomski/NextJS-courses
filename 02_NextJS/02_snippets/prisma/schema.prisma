@@ -1,15 +1,21 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+//* 1. Generator Block
 generator client {
   provider = "prisma-client-js"
 }
 
+//* 2. Datasource Block
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL") // Environment variable named DATABASE_URL. 
 }
 
+//* 3. Model Definition
+// id: An integer field that serves as the primary key (@id) and automatically increments with each new entry (@default(autoincrement())).
+// title: A string field to store the title of the snippet.
+// code: A string field to store the actual code snippet.
 model Snippet {
   id Int @id @default(autoincrement())
   title String
