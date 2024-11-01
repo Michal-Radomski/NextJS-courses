@@ -1,10 +1,6 @@
 import React from "react";
 
-const NotificationContext = React.createContext({
-  notification: null as NotificationI | null, // { title, message, status }
-  showNotification: function (notificationData: NotificationI): void {},
-  hideNotification: function (): void {},
-});
+const NotificationContext = React.createContext({} as NotificationContextI);
 
 export default NotificationContext;
 

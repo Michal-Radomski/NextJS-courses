@@ -31,7 +31,7 @@ function NewsletterRegistration(): JSX.Element {
           return response.json();
         }
 
-        return response.json().then((data) => {
+        return response.json().then((data): Error => {
           throw new Error(data.message || "Something went wrong!");
         });
       })
