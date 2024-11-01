@@ -9,7 +9,7 @@ function Hero(): JSX.Element {
         <Image src="/images/site/tux.png" alt="An image showing Tux" width={300} height={300} />
       </div>
       <h1>Hi, I'm Tux</h1>
-      <p>I blog about web development - especially React and node.</p>
+      <p>I blog about web development - especially React and Node.</p>
     </section>
   );
 }
