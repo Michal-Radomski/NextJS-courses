@@ -5,16 +5,16 @@ import classes from "./new-comment.module.scss";
 function NewComment(props: { onAddComment: (commentData: CommentI) => void }): JSX.Element {
   const [isInvalid, setIsInvalid] = React.useState<boolean>(false);
 
-  const emailInputRef = React.useRef<HTMLInputElement>(null);
-  const nameInputRef = React.useRef<HTMLInputElement>(null);
-  const commentInputRef = React.useRef<HTMLTextAreaElement>(null);
+  const emailInputRef: React.RefObject<HTMLInputElement> = React.useRef<HTMLInputElement>(null);
+  const nameInputRef: React.RefObject<HTMLInputElement> = React.useRef<HTMLInputElement>(null);
+  const commentInputRef: React.RefObject<HTMLTextAreaElement> = React.useRef<HTMLTextAreaElement>(null);
 
   function sendCommentHandler(event: React.SyntheticEvent): void {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current?.value;
-    const enteredName = nameInputRef.current?.value;
-    const enteredComment = commentInputRef.current?.value;
+    const enteredEmail = emailInputRef.current?.value as string;
+    const enteredName = nameInputRef.current?.value as string;
+    const enteredComment = commentInputRef.current?.value as string;
 
     if (
       !enteredEmail ||

@@ -33,7 +33,7 @@ function Comments(props: { eventId: string }): JSX.Element {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
+      .then((response: Response) => response.json())
       .then((data) => console.log(data))
       .catch((err) => console.log("err:", err));
   }
@@ -41,8 +41,8 @@ function Comments(props: { eventId: string }): JSX.Element {
   return (
     <section className={classes.comments}>
       <button onClick={toggleCommentsHandler}>{showComments ? "Hide" : "Show"} Comments</button>
-      {showComments && <NewComment onAddComment={addCommentHandler} />}
-      {showComments && <CommentList items={comments} />}
+      {showComments ? <NewComment onAddComment={addCommentHandler} /> : null}
+      {showComments ? <CommentList items={comments} /> : null}
     </section>
   );
 }
