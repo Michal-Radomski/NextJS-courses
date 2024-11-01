@@ -11,6 +11,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
   try {
     client = (await connectDatabase()) as MongoClient;
   } catch (error) {
+    console.log("error:", error);
     res.status(500).json({ message: "Connecting to the database failed!" });
     return;
   }
@@ -38,6 +39,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
       newComment._id = result.insertedId;
       res.status(201).json({ message: "Added comment.", comment: newComment });
     } catch (error) {
+      console.log("error:", error);
       res.status(500).json({ message: "Inserting comment failed!" });
     }
   }
@@ -47,6 +49,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
       const documents = (await getAllDocuments(client, "comments", { _id: -1 } as any)) as WithId<Document>[];
       res.status(200).json({ comments: documents });
     } catch (error) {
+      console.log("error:", error);
       res.status(500).json({ message: "Getting comments failed." });
     }
   }

@@ -8,6 +8,7 @@ interface EventI {
   isFeatured?: boolean;
 }
 
+// Fix the interfaces?
 interface CommentI {
   email: string;
   text?: string;

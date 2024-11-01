@@ -1,4 +1,4 @@
-import { Db, InsertOneResult, MongoClient, WithId } from "mongodb";
+import { Db, InsertOneResult, MongoClient, Sort, WithId } from "mongodb";
 
 export async function connectDatabase(): Promise<MongoClient> {
   const client: MongoClient = await MongoClient.connect(process.env.MONG0_URL as string);
@@ -18,11 +18,7 @@ export async function insertDocument(
   return result;
 }
 
-export async function getAllDocuments(
-  client: MongoClient,
-  collection: string,
-  sort: { id: any }
-): Promise<WithId<Document>[]> {
+export async function getAllDocuments(client: MongoClient, collection: string, sort: Sort): Promise<WithId<Document>[]> {
   const db: Db = client.db();
 
   const documents = (await db.collection(collection).find().sort(sort).toArray()) as WithId<Document>[];

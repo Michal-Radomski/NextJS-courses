@@ -17,6 +17,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
     try {
       client = (await connectDatabase()) as MongoClient;
     } catch (error) {
+      console.log("error:", error);
       res.status(500).json({ message: "Connecting to the database failed!" });
       return;
     }
@@ -27,6 +28,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
       });
       client.close();
     } catch (error) {
+      console.log("error:", error);
       res.status(500).json({ message: "Inserting data failed!" });
       return;
     }
