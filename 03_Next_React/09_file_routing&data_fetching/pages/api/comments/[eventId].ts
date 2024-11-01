@@ -46,7 +46,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
 
   if (req.method === "GET") {
     try {
-      const documents = (await getAllDocuments(client, "comments", { _id: -1 } as any)) as WithId<Document>[];
+      const documents = (await getAllDocuments(client, "comments", { _id: -1 } as any, {
+        eventId: eventId,
+      })) as WithId<Document>[];
       res.status(200).json({ comments: documents });
     } catch (error) {
       console.log("error:", error);

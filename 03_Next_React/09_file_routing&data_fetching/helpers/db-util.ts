@@ -18,10 +18,15 @@ export async function insertDocument(
   return result;
 }
 
-export async function getAllDocuments(client: MongoClient, collection: string, sort: Sort): Promise<WithId<Document>[]> {
+export async function getAllDocuments(
+  client: MongoClient,
+  collection: string,
+  sort: Sort,
+  filter = {}
+): Promise<WithId<Document>[]> {
   const db: Db = client.db();
 
-  const documents = (await db.collection(collection).find().sort(sort).toArray()) as WithId<Document>[];
+  const documents = (await db.collection(collection).find(filter).sort(sort).toArray()) as WithId<Document>[];
 
   return documents;
 }
