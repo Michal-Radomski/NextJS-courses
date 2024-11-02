@@ -1,0 +1,43 @@
+The **App Router** and **File-Based Router** in Next.js represent two different approaches to routing within the framework, each with its own characteristics and use cases. Here’s a breakdown of their differences:
+
+## Overview of Routing Approaches
+
+### File-Based Router (Pages Router)
+- **Structure**: Utilizes a straightforward file structure where each file in the `/pages` directory corresponds directly to a route. For example, a file named `contact.js` in the `/pages` directory creates a route at `/contact`.
+- **Simplicity**: This approach is generally easier for beginners as it follows a convention-over-configuration model, making it intuitive to understand how routes are defined based on the file system structure.
+- **Dynamic Routing**: Supports dynamic routes using square brackets (e.g., `[id].js`), which allows for parameterized paths.
+- **SEO and Performance**: Traditionally favored for static sites due to its simplicity and ease of implementation with Static Site Generation (SSG) and Server-Side Rendering (SSR) capabilities.
+
+### App Router
+- **Structure**: Introduced in Next.js 13, the App Router operates within an `/app` directory. Each route is defined by creating folders that contain a `page.js` file, which exports the component for that route. For instance, `/app/about/page.js` corresponds to the `/about` route.
+- **Flexibility and Control**: Offers more advanced features such as nested routing, shared layouts, and loading states. This makes it suitable for complex applications that require more control over routing behavior.
+- **Server Components**: The App Router leverages React Server Components, allowing for better performance optimizations and improved data fetching strategies.
+- **API Routes**: API routes can be defined anywhere within the `/app` directory using `route.js`, providing greater flexibility compared to the Pages Router, which confines API routes to the `/api` folder.
+
+## Key Differences
+
+| Feature                       | File-Based Router (Pages Router) | App Router                       |
+|-------------------------------|-----------------------------------|----------------------------------|
+| **Directory Structure**       | `/pages`                          | `/app`                           |
+| **Route Definition**          | Directly via file names           | Via folder structure with `page.js` |
+| **Dynamic Routing**           | Uses `[param].js`                 | Uses `[param]/page.js`          |
+| **Nested Routes**             | Limited support                   | Extensive support with nested folders |
+| **Server Components**         | Not supported                     | Fully supported                  |
+| **API Routes**                | Located in `/api/`               | Can be defined anywhere in `/app/` using `route.js` |
+| **Learning Curve**            | Easier for beginners              | More complex but powerful        |
+
+## Considerations for Use
+- **When to Use File-Based Router**: Ideal for simpler applications or when transitioning from older Next.js versions. It's beginner-friendly and provides sufficient functionality for many static sites.
+- **When to Use App Router**: Recommended for new projects that require complex routing capabilities, better performance optimizations, or when utilizing features like Server Components. It is particularly beneficial for applications that need shared layouts or loading states.
+
+In conclusion, while both routing systems are supported in Next.js, the choice between them largely depends on the complexity of your application and your specific needs regarding routing behavior. The App Router is increasingly favored for new projects due to its advanced features and flexibility.
+
+Citations:
+[1] https://www.pronextjs.dev/workshops/next-js-foundations-for-professional-web-development~lxb18/file-based-routing-with-app-router~dtnrx
+[2] https://www.youtube.com/watch?v=GJPEgai_dKw
+[3] https://dev.to/dcs_ink/nextjs-app-router-vs-pages-router-3p57
+[4] https://nextjs.org/docs/app/building-your-application/routing
+[5] https://www.reddit.com/r/nextjs/comments/1c5unax/app_or_pages_router/
+[6] https://stackoverflow.com/questions/76570208/what-is-different-between-app-router-and-pages-router-in-next-js
+[7] https://github.com/vercel/next.js/discussions/59373
+[8] https://nextjs.org/docs/pages/building-your-application/routing
