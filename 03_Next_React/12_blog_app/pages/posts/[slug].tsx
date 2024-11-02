@@ -17,7 +17,7 @@ function PostDetailPage(props: { post: Post }): JSX.Element {
   );
 }
 
-export function getStaticProps(context: { params: Params }) {
+export function getStaticProps(context: { params: Params }): { props: { post: Post }; revalidate?: number } {
   const { params }: { params: Params } = context;
   const { slug } = params as { slug: string };
 

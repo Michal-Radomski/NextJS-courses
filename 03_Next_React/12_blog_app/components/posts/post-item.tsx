@@ -22,9 +22,12 @@ function PostItem(props: { post: Post }): JSX.Element {
           <Image
             src={imagePath}
             alt={title}
-            width={300}
-            height={200}
+            // width={300}
+            // height={200}
             // layout="responsive"
+            priority={true}
+            sizes="100%"
+            fill={true}
           />
         </div>
         <div className={classes.content}>

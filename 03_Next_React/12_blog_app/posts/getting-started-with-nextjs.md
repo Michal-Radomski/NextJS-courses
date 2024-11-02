@@ -8,6 +8,8 @@ excerpt:
 isFeatured: true
 ---
 
+<!-- [comment]: (MetaData above - YAML format) -->
+
 NextJS is a **framework for ReactJS**.
 
 Wait a second ... a "framework" for React? Isn't React itself already a framework for JavaScript?

@@ -16,13 +16,14 @@ function AllPostsPage(props: { posts: Post[] }): JSX.Element {
   );
 }
 
-export function getStaticProps(): { props: { posts: Post[] } } {
+export function getStaticProps(): { props: { posts: Post[] }; revalidate?: number } {
   const allPosts: Post[] = getAllPosts();
 
   return {
     props: {
       posts: allPosts,
     },
+    revalidate: 60 * 60 * 24, // 1 day
   };
 }
 

@@ -1,19 +1,23 @@
 import fs from "fs";
 import path from "path";
-
 import matter from "gray-matter";
 
-const postsDirectory: string = path.join(process.cwd(), "posts");
+const postsDirectory: string = path.join(process.cwd() as string, "posts");
 
 export function getPostsFiles(): string[] {
-  return fs.readdirSync(postsDirectory);
+  return fs.readdirSync(postsDirectory, {
+    encoding: "utf-8",
+    withFileTypes: undefined,
+    recursive: false,
+  });
 }
 
 export function getPostData(postIdentifier: string): Post {
-  const postSlug: string = postIdentifier.replace(/\.md$/, ""); // removes the file extension
+  const postSlug: string = postIdentifier.replace(/\.md$/, ""); // Removes the file extension
   const filePath: string = path.join(postsDirectory, `${postSlug}.md`);
   const fileContent: string = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(fileContent) as unknown as { data: Post; content: string };
+  const { data, content } = matter(fileContent) as { data: { [key: string]: string }; content: string };
+  // console.log({ data, content });
 
   const postData = {
     slug: postSlug,
@@ -31,6 +35,7 @@ export function getAllPosts(): Post[] {
     return getPostData(postFile);
   });
 
+  //* Most recent posts on the top
   const sortedPosts: Post[] = allPosts.sort((postA: Post, postB: Post) => (postA.date! > postB.date! ? -1 : 1));
 
   return sortedPosts;

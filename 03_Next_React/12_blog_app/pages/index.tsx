@@ -19,13 +19,15 @@ function HomePage(props: { posts: Post[] }): JSX.Element {
   );
 }
 
-export function getStaticProps(): { props: { posts: Post[] } } {
+//* For SEO and not! to be React.useEffect
+export function getStaticProps(): { props: { posts: Post[] }; revalidate?: number } {
   const featuredPosts = getFeaturedPosts() as Post[];
 
   return {
     props: {
       posts: featuredPosts,
     },
+    revalidate: 60 * 60 * 24, // 1 day
   };
 }
 

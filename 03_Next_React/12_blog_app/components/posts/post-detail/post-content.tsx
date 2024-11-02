@@ -1,3 +1,4 @@
+import { ElementType } from "react";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -11,16 +12,15 @@ function PostContent(props: { post: Post }): JSX.Element {
 
   const imagePath: string = `/images/posts/${post.slug}/${post.image}`;
 
-  const customRenderers = {
+  const customRenderers: { [nodeType: string]: ElementType } = {
     // img(image: any): JSX.Element {
     //   return <Image src={`/images/posts/${post.slug}/${image.src}`} alt={image.alt} width={600} height={300} />;
     // },
 
-    p(paragraph: any): JSX.Element {
-      console.log("paragraph:", paragraph);
+    p(paragraph): JSX.Element {
+      // console.log("paragraph:", paragraph);
 
       const { node } = paragraph;
-
       if (node.children[0].tagName === "img") {
         const image = node.children[0];
 
@@ -34,9 +34,9 @@ function PostContent(props: { post: Post }): JSX.Element {
       return <p>{paragraph.children}</p>;
     },
 
-    code(code: any) {
-      console.log("code:", code);
-      const { className, children } = code;
+    code(code): JSX.Element {
+      // console.log("code:", code);
+      const { className, children } = code as { className: string; children: string };
       const language = className.split("-")[1]; // className is something like language-js => We need the "js" part here
       return <SyntaxHighlighter style={atomDark} language={language} children={children} />;
     },
