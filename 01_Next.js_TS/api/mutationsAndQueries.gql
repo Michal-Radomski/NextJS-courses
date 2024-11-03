@@ -1,3 +1,4 @@
+# Mutation SignUp: email + password
 mutation SignUp($email: String!, $password: String!) {
   register(input: { email: $email, password: $password }) {
     user {
@@ -8,6 +9,7 @@ mutation SignUp($email: String!, $password: String!) {
   }
 }
 
+# Mutation AddStream
 mutation AddStream($input: StreamInput!) {
   addStream(input: $input) {
     _id
@@ -17,6 +19,7 @@ mutation AddStream($input: StreamInput!) {
   }
 }
 
+# Query Current User: _id + email
 query CurrentUser {
   currentUser {
     _id
@@ -24,6 +27,7 @@ query CurrentUser {
   }
 }
 
+# Query Stream
 query Stream($streamId: ObjectId!) {
   stream(streamId: $streamId) {
     _id
