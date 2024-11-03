@@ -13,7 +13,8 @@ function PostContent(props: { post: Post }): JSX.Element {
   const imagePath: string = `/images/posts/${post.slug}/${post.image}`;
 
   const customRenderers: { [nodeType: string]: ElementType } = {
-    // img(image: any): JSX.Element {
+    // img(image): JSX.Element {
+    //   console.log("image:", image);
     //   return <Image src={`/images/posts/${post.slug}/${image.src}`} alt={image.alt} width={600} height={300} />;
     // },
 
@@ -23,10 +24,16 @@ function PostContent(props: { post: Post }): JSX.Element {
       const { node } = paragraph;
       if (node.children[0].tagName === "img") {
         const image = node.children[0];
+        // console.log({ image });
 
         return (
           <div className={classes.image}>
-            <Image src={`/images/posts/${post.slug}/${image.properties.src}`} alt={image.alt} width={600} height={300} />
+            <Image
+              src={`/images/posts/${post.slug}/${image.properties.src}`}
+              alt={image.properties.alt}
+              width={600}
+              height={300}
+            />
           </div>
         );
       }

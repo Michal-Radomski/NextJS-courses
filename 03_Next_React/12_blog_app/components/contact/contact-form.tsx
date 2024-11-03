@@ -4,18 +4,24 @@ import classes from "./contact-form.module.scss";
 import Notification from "../ui/notification";
 
 async function sendContactData(contactDetails: Contact): Promise<void> {
-  const response: Response = await fetch("/api/contact", {
-    method: "POST",
-    body: JSON.stringify(contactDetails),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  try {
+    const response: Response = await fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify(contactDetails),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  const data = (await response.json()) as Contact;
+    const data = (await response.json()) as Contact;
+    // console.log("data:", data);
 
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong!");
+    if (!response.ok) {
+      throw new Error(data.message || "Something went wrong!");
+    }
+    //* Unnecessary?
+  } catch (error) {
+    console.log("error:", error);
   }
 }
 
@@ -40,7 +46,7 @@ function ContactForm(): JSX.Element {
   async function sendMessageHandler(event: React.FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
 
-    // Optional: add client-side validation
+    //* Optional: add client-side validation
 
     setRequestStatus("pending" as Status);
 
@@ -55,6 +61,7 @@ function ContactForm(): JSX.Element {
       setEnteredEmail("");
       setEnteredName("");
     } catch (error) {
+      console.log("error:", error);
       if (error instanceof Error) {
         setRequestError(error.message);
         setRequestStatus("error" as Status);
@@ -69,7 +76,7 @@ function ContactForm(): JSX.Element {
       status: "pending" as Status,
       title: "Sending message...",
       message: "Your message is on its way!",
-    };
+    } as NotificationI;
   }
 
   if (requestStatus === "success") {
@@ -77,7 +84,7 @@ function ContactForm(): JSX.Element {
       status: "success" as Status,
       title: "Success!",
       message: "Message sent successfully!",
-    };
+    } as NotificationI;
   }
 
   if (requestStatus === "error") {
@@ -85,7 +92,7 @@ function ContactForm(): JSX.Element {
       status: "error" as Status,
       title: "Error!",
       message: requestError,
-    };
+    } as NotificationI;
   }
 
   return (

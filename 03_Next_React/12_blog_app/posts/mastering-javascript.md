@@ -15,7 +15,7 @@ For example, you should understand code like this:
 ```ts
 const basics:string = 'Okay, that should not be too difficult actually';
 
-function printBasics():void {
+function printBasics(): void {
   console.log("basics:", basics):
 }
 
