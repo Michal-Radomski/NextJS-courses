@@ -1,12 +1,18 @@
+// 1. Generator Block
 generator client {
   provider = "prisma-client-js"
 }
 
+     
+
+// 2. Datasource Block
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
+// 3. Model Definitions
+// Account Model
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -26,6 +32,7 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+// Session Model
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
@@ -34,6 +41,7 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+// User Model
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -46,6 +54,7 @@ model User {
   Comment       Comment[]
 }
 
+// VerificationToken Model
 model VerificationToken {
   identifier String
   token      String   @unique
@@ -54,6 +63,7 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+// Topic Model
 model Topic {
   id          String @id @default(cuid())
   slug        String @unique
@@ -64,6 +74,7 @@ model Topic {
   updatedAt DateTime @updatedAt
 }
 
+// Post Model
 model Post {
   id      String @id @default(cuid())
   title   String
@@ -79,6 +90,7 @@ model Post {
   comments Comment[]
 }
 
+// Comment Model
 model Comment {
   id       String  @id @default(cuid())
   content  String

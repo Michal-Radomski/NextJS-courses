@@ -17,7 +17,6 @@ export default nextConfig;
 //       },
 //     };
 //   }
-
 //   return {
 //     env: {
 //       mongodb_username: '',
