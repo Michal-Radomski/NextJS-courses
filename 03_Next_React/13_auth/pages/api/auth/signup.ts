@@ -9,7 +9,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Auth>): Promise
     return;
   }
 
-  const data = req.body;
+  const data = req.body as Auth;
 
   const { email, password } = data;
 
