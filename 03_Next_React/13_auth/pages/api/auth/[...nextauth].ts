@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { Awaitable, NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { Collection, MongoClient } from "mongodb";
 
@@ -13,7 +13,9 @@ export default NextAuth({
     CredentialsProvider({
       name: "Credentials",
 
-      async authorize(credentials: { email: string; password: string }): Promise<{ email: string }> {
+      async authorize(credentials: { email: string; password: string }): Promise<Awaitable<User>> {
+        console.log("credentials= ", credentials);
+
         const client: MongoClient = await connectToDatabase();
 
         const usersCollection: Collection<Document> = client.db().collection("users");
@@ -36,8 +38,8 @@ export default NextAuth({
 
         client.close();
         // return user;
-        return { email: user.email };
+        return { email: user.email } as Awaitable<User>;
       },
     }),
   ],
-});
+}) as NextAuthOptions;
