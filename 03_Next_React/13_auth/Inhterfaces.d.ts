@@ -3,3 +3,8 @@ type Auth = {
   password?: string;
   message: string;
 };
+
+interface Password {
+  oldPassword: string;
+  newPassword: string;
+}
