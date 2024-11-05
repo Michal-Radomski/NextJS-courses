@@ -5,6 +5,8 @@ import "@/styles/globals.scss";
 import Layout from "../components/layout/layout";
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps): JSX.Element {
+  // console.log("session:", session);
+
   return (
     <SessionProvider session={session}>
       <Layout>

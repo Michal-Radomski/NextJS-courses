@@ -9,7 +9,9 @@ function ProfilePage(): JSX.Element {
 }
 
 export async function getServerSideProps(context: { req: NextApiRequest }): Promise<any> {
+  // console.log("context:", context);
   const session = (await getSession({ req: context.req })) as Session;
+  // console.log("session:", session);
 
   if (!session) {
     return {

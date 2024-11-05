@@ -3,8 +3,8 @@ import React from "react";
 import classes from "./profile-form.module.scss";
 
 function ProfileForm({ onChangePassword }: { onChangePassword: (arg0: Password) => void }): JSX.Element {
-  const oldPasswordRef = React.useRef<HTMLInputElement>(null);
-  const newPasswordRef = React.useRef<HTMLInputElement>(null);
+  const oldPasswordRef: React.RefObject<HTMLInputElement> = React.useRef<HTMLInputElement>(null);
+  const newPasswordRef: React.RefObject<HTMLInputElement> = React.useRef<HTMLInputElement>(null);
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();

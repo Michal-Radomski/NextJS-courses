@@ -51,7 +51,7 @@ function AuthForm(): JSX.Element {
       // console.log("result:", result);
 
       if (!result?.error) {
-        // set some auth state
+        // Set some auth state
         router.replace("/profile");
       }
     } else {
