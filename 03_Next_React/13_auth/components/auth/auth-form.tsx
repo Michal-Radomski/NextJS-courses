@@ -48,6 +48,7 @@ function AuthForm(): JSX.Element {
         email: enteredEmail,
         password: enteredPassword,
       });
+      // console.log("result:", result);
 
       if (!result?.error) {
         // set some auth state

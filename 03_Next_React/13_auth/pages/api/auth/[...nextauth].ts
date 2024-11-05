@@ -14,7 +14,7 @@ export default NextAuth({
       name: "Credentials",
 
       async authorize(credentials: { email: string; password: string }): Promise<Awaitable<User>> {
-        console.log("credentials= ", credentials);
+        console.log("credentials:", credentials);
 
         const client: MongoClient = await connectToDatabase();
 
@@ -37,7 +37,7 @@ export default NextAuth({
         }
 
         client.close();
-        // return user;
+        // Return user;
         return { email: user.email } as Awaitable<User>;
       },
     }),
