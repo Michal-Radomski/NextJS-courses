@@ -12,7 +12,7 @@ function ProfileForm({ onChangePassword }: { onChangePassword: (arg0: Password) 
     const enteredOldPassword = oldPasswordRef.current?.value as string;
     const enteredNewPassword = newPasswordRef.current?.value as string;
 
-    // optional: Add validation
+    // Optional: Add validation
 
     onChangePassword({
       oldPassword: enteredOldPassword,

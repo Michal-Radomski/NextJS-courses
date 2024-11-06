@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession, Session } from "next-auth";
-import { Collection, MongoClient, WithId } from "mongodb";
+import { Collection, MongoClient, WithId, UpdateOneResult } from "mongodb";
 
 import { hashPassword, verifyPassword } from "../../../lib/auth";
 import { connectToDatabase } from "../../../lib/db";
@@ -11,7 +11,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
     return;
   }
 
-  const session = await getServerSession(req, res, authOptions);
+  const session = (await getServerSession(req, res, authOptions)) as Session;
   // console.log("session:", session);
 
   if (!session) {
@@ -35,9 +35,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
     return;
   }
 
-  const currentPassword = user.password;
+  const currentPassword = user.password as string;
 
-  const passwordsAreEqual = await verifyPassword(oldPassword, currentPassword);
+  const passwordsAreEqual: boolean = await verifyPassword(oldPassword, currentPassword);
 
   if (!passwordsAreEqual) {
     res.status(403).json({ message: "Invalid password." });
@@ -45,9 +45,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
     return;
   }
 
-  const hashedPassword = await hashPassword(newPassword);
+  const hashedPassword: string = await hashPassword(newPassword);
 
-  const result = await usersCollection.updateOne({ email: userEmail }, { $set: { password: hashedPassword } });
+  const result = (await usersCollection.updateOne(
+    { email: userEmail },
+    { $set: { password: hashedPassword } }
+  )) as UpdateOneResult<Document>;
   console.log("result:", result);
 
   client.close();
