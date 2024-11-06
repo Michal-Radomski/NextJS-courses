@@ -23,6 +23,7 @@ function UserProfile(): JSX.Element {
   // }
 
   async function changePasswordHandler(passwordData: Password): Promise<void> {
+    // console.log("passwordData:", passwordData);
     const response = (await fetch("/api/user/change-password", {
       method: "PATCH",
       body: JSON.stringify(passwordData),

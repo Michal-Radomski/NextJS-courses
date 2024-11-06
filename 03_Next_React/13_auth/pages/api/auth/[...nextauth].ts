@@ -5,16 +5,18 @@ import { Collection, MongoClient } from "mongodb";
 import { verifyPassword } from "../../../lib/auth";
 import { connectToDatabase } from "../../../lib/db";
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
+  secret: process.env.SECRET as string,
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   providers: [
     CredentialsProvider({
       name: "Credentials",
 
       async authorize(credentials: { email: string; password: string }): Promise<Awaitable<User>> {
-        console.log("credentials:", credentials);
+        // console.log("credentials:", credentials);
 
         const client: MongoClient = await connectToDatabase();
 
@@ -42,4 +44,6 @@ export default NextAuth({
       },
     }),
   ],
-}) as NextAuthOptions;
+};
+
+export default NextAuth(authOptions);
