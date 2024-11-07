@@ -1,5 +1,5 @@
 import StartingPageContent from "../components/starting-page/starting-page";
 
-export default function HomeHomePage(): JSX.Element {
+export default function HomePage(): JSX.Element {
   return <StartingPageContent />;
 }
