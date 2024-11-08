@@ -1,5 +1,6 @@
 interface MeetUp {
-  id: Key | string;
+  _id?: Key | string;
+  id?: Key | string;
   title: string;
   image: string | File;
   address: string;
