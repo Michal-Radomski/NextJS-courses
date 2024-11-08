@@ -1,9 +1,9 @@
 import React from "react";
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
 import Head from "next/head";
+import { Params } from "next/dist/server/request/params";
 
 import MeetupDetail from "../../components/meetups/MeetupDetail";
-import { Params } from "next/dist/server/request/params";
 
 function MeetupDetails(props: { meetupData: MeetUp }): JSX.Element {
   return (
