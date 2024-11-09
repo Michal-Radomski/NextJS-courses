@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import { Collection, Db, MongoClient } from "mongodb";
 
 import MeetupList from "../components/meetups/MeetupList";
 
@@ -15,11 +16,12 @@ function HomePage(props: { meetups: MeetUp[] }): JSX.Element {
   );
 }
 
+//* Runs on every request!
 // export async function getServerSideProps(context) {
 //   const req = context.req;
 //   const res = context.res;
 
-//   // fetch data from an API
+//   // Fetch data from an API
 
 //   return {
 //     props: {
@@ -28,28 +30,32 @@ function HomePage(props: { meetups: MeetUp[] }): JSX.Element {
 //   };
 // }
 
-// export async function getStaticProps() {
-//   // fetch data from an API
-//   const client = await MongoClient.connect(process.env.MONG0_URL as string)
-//   const db = client.db();
+//* Only in page components! -> Static Generation!
+export async function getStaticProps() {
+  // fetch data from an API
 
-//   const meetupsCollection = db.collection("meetups");
+  const client: MongoClient = await MongoClient.connect(process.env.MONG0_URL as string);
+  const db: Db = client.db();
 
-//   const meetups = (await meetupsCollection.find().toArray()) as MeetUp[];
+  const meetupsCollection: Collection<Document> = db.collection("meetups");
 
-//   client.close();
+  const meetups = (await meetupsCollection.find().toArray()) as MeetUp[];
 
-//   return {
-//     props: {
-//       meetups: meetups.map((meetup: MeetUp) => ({
-//         title: meetup.title,
-//         address: meetup.address,
-//         image: meetup.image,
-//         id: meetup._id.toString(),
-//       })),
-//     },
-//     revalidate: 1,
-//   };
-// }
+  client.close();
+
+  return {
+    props: {
+      meetups: meetups.map(
+        (meetup: MeetUp): MeetUp => ({
+          title: meetup.title,
+          address: meetup.address,
+          image: meetup.image,
+          id: meetup._id.toString(),
+        })
+      ),
+    },
+    revalidate: 60,
+  };
+}
 
 export default HomePage;
