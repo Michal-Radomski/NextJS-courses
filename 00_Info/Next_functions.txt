@@ -1,0 +1,72 @@
+In Next.js, functions like `getStaticProps`, `getServerSideProps`, and others are essential for data fetching and page rendering strategies. Each function serves a unique purpose in managing how data is retrieved and how pages are generated. Here’s a detailed explanation of these functions:
+
+## 1. getStaticProps
+- **Purpose**: Used for **Static Site Generation (SSG)**.
+- **When to Use**: Ideal for pages with data that does not change frequently, such as blog posts or documentation.
+- **How It Works**: 
+  - This function is executed at build time, fetching data and generating static HTML for the page.
+  - The fetched data is returned as props to the page component, allowing the component to render with this data immediately upon request.
+- **Benefits**:
+  - Faster load times since the HTML is pre-generated and served directly.
+  - Improved SEO because content is available at load time.
+- **Example**:
+  ```javascript
+  export async function getStaticProps() {
+      const res = await fetch('https://api.example.com/data');
+      const data = await res.json();
+      return { props: { data } };
+  }
+  ```
+
+## 2. getServerSideProps
+- **Purpose**: Used for **Server-Side Rendering (SSR)**.
+- **When to Use**: Suitable for pages that require fresh data on every request, such as user dashboards or dynamic content.
+- **How It Works**:
+  - This function runs on the server for every incoming request, fetching data and generating HTML dynamically.
+  - The returned props are sent to the page component, ensuring that users always see the most up-to-date content.
+- **Benefits**:
+  - Real-time data availability since the content is generated on each request.
+- **Example**:
+  ```javascript
+  export async function getServerSideProps() {
+      const res = await fetch('https://api.example.com/data');
+      const data = await res.json();
+      return { props: { data } };
+  }
+  ```
+
+## 3. getStaticPaths
+- **Purpose**: Used in conjunction with `getStaticProps` for dynamic routes.
+- **When to Use**: Necessary when you want to pre-render dynamic routes based on external data (e.g., blog posts with slugs).
+- **How It Works**:
+  - This function returns an array of paths that should be statically generated at build time.
+  - It allows you to specify which dynamic routes should be pre-rendered based on the available data.
+- **Example**:
+  ```javascript
+  export async function getStaticPaths() {
+      const res = await fetch('https://api.example.com/posts');
+      const posts = await res.json();
+      const paths = posts.map(post => ({ params: { slug: post.slug } }));
+      return { paths, fallback: false };
+  }
+  ```
+
+## Summary of Functions
+
+| Function              | Type           | Execution Timing          | Use Case                                   |
+|----------------------|----------------|---------------------------|--------------------------------------------|
+| `getStaticProps`     | Static Generation | Build Time               | Pages with infrequently changing data     |
+| `getServerSideProps` | Server-Side Rendering | On Every Request       | Pages requiring real-time data            |
+| `getStaticPaths`     | Dynamic Routes   | Build Time               | Pre-rendering dynamic routes               |
+
+These functions provide developers with powerful tools to optimize their applications based on specific needs regarding data freshness and performance. By choosing the appropriate method, you can enhance both user experience and SEO effectiveness in your Next.js applications.
+
+Citations:
+[1] https://blog.stackademic.com/what-is-getstaticprops-in-next-js-6b9009cf6072?gi=54d191bc44d5
+[2] https://nextjs.org/docs/pages/api-reference/functions/get-static-props
+[3] https://dev.to/melvin2016/static-site-generation-in-nextjs-using-getstaticprops-function-ma3
+[4] https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props
+[5] https://www.geeksforgeeks.org/next-js-getstaticprops-function/
+[6] https://www.reddit.com/r/nextjs/comments/182ojfg/can_someone_explain_getstaticprops_and/
+[7] https://www.youtube.com/watch?v=zueyEdRZQlk
+[8] https://stackoverflow.com/questions/72315270/nextjs-getstaticprops-not-working-in-my-component
