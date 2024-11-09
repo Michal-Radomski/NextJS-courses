@@ -9,7 +9,7 @@ function NewMeetupForm(props: { onAddMeetup: (arg0: MeetUp) => void }): JSX.Elem
   const addressInputRef = React.useRef<HTMLInputElement>(null);
   const descriptionInputRef = React.useRef<HTMLTextAreaElement>(null);
 
-  function submitHandler(event: React.FormEvent<HTMLFormElement>) {
+  function submitHandler(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
     const enteredTitle = titleInputRef.current?.value as string;
