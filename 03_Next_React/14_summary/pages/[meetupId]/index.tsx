@@ -23,7 +23,7 @@ function MeetupDetails(props: { meetupData: MeetUp }): JSX.Element {
 }
 
 export async function getStaticPaths() {
-  const client: MongoClient = await MongoClient.connect("");
+  const client: MongoClient = await MongoClient.connect(process.env.MONG0_URL as string);
   const db: Db = client.db();
 
   const meetupsCollection: Collection<Document> = db.collection("meetups");
@@ -52,7 +52,7 @@ export async function getStaticProps(context: { params: Params }) {
 
   const meetupId = context.params.meetupId as string;
 
-  const client: MongoClient = await MongoClient.connect("");
+  const client: MongoClient = await MongoClient.connect(process.env.MONG0_URL as string);
   const db: Db = client.db();
 
   const meetupsCollection: Collection<Document> = db.collection("meetups");

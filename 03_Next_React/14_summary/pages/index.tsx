@@ -30,7 +30,7 @@ function HomePage(props: { meetups: MeetUp[] }): JSX.Element {
 
 // export async function getStaticProps() {
 //   // fetch data from an API
-//   const client = await MongoClient.connect("");
+//   const client = await MongoClient.connect(process.env.MONG0_URL as string)
 //   const db = client.db();
 
 //   const meetupsCollection = db.collection("meetups");
