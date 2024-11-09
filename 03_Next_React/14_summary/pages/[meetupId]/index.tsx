@@ -23,19 +23,12 @@ function MeetupDetails(props: { meetupData: MeetUp }): JSX.Element {
 }
 
 export async function getStaticPaths() {
-  const client: MongoClient = await MongoClient.connect(process.env.MONG0_URL as string);
+  const client = (await MongoClient.connect(process.env.MONG0_URL as string)) as MongoClient;
   const db: Db = client.db();
 
   const meetupsCollection: Collection<Document> = db.collection("meetups");
 
-  const meetups = (await meetupsCollection
-    .find(
-      {},
-      {
-        projection: { _id: 0 },
-      }
-    )
-    .toArray()) as MeetUp[];
+  const meetups = (await meetupsCollection.find({}, { _id: 1 }).toArray()) as MeetUp[];
 
   client.close();
 
@@ -52,13 +45,13 @@ export async function getStaticProps(context: { params: Params }) {
 
   const meetupId = context.params.meetupId as string;
 
-  const client: MongoClient = await MongoClient.connect(process.env.MONG0_URL as string);
+  const client = (await MongoClient.connect(process.env.MONG0_URL as string)) as MongoClient;
   const db: Db = client.db();
 
   const meetupsCollection: Collection<Document> = db.collection("meetups");
 
   const selectedMeetup = (await meetupsCollection.findOne({
-    _id: new ObjectId(meetupId),
+    _id: ObjectId(meetupId),
   })) as MeetUp;
 
   client.close();
@@ -66,7 +59,7 @@ export async function getStaticProps(context: { params: Params }) {
   return {
     props: {
       meetupData: {
-        id: selectedMeetup?._id.toString(),
+        id: selectedMeetup?._id?.toString(),
         title: selectedMeetup?.title,
         address: selectedMeetup?.address,
         image: selectedMeetup?.image,

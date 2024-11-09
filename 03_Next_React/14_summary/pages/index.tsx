@@ -39,7 +39,7 @@ export async function getStaticProps() {
 
   const meetupsCollection: Collection<Document> = db.collection("meetups");
 
-  const meetups = (await meetupsCollection.find().toArray()) as MeetUp[];
+  const meetups = (await meetupsCollection.find().toArray()) as unknown as MeetUp[];
 
   client.close();
 
@@ -50,7 +50,7 @@ export async function getStaticProps() {
           title: meetup.title,
           address: meetup.address,
           image: meetup.image,
-          id: meetup._id.toString(),
+          id: meetup?._id?.toString(),
         })
       ),
     },
