@@ -31,7 +31,7 @@ function HomePage(props: { meetups: MeetUp[] }): JSX.Element {
 // }
 
 //* Only in page components! -> Static Generation!
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<any> {
   // fetch data from an API
 
   const client: MongoClient = await MongoClient.connect(process.env.MONG0_URL as string);

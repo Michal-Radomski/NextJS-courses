@@ -22,7 +22,7 @@ function MeetupDetails(props: { meetupData: MeetUp }): JSX.Element {
   );
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths(): Promise<any> {
   const client = (await MongoClient.connect(process.env.MONG0_URL as string)) as MongoClient;
   const db: Db = client.db();
 
@@ -33,14 +33,14 @@ export async function getStaticPaths() {
   client.close();
 
   return {
-    fallback: "blocking",
+    fallback: "blocking", //* can be true, but not false!
     paths: meetups.map((meetup: MeetUp) => ({
       params: { meetupId: meetup._id.toString() },
     })),
   };
 }
 
-export async function getStaticProps(context: { params: Params }) {
+export async function getStaticProps(context: { params: Params }): Promise<any> {
   // fetch data for a single meetup
 
   const meetupId = context.params.meetupId as string;
