@@ -1,6 +1,6 @@
 import React from "react";
 
-import variableColors from "../styles/_App.module.scss";
+import variableColors from "./styles/_App.module.scss";
 
 const { textColor } = variableColors;
 
