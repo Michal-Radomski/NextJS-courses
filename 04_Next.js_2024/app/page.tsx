@@ -1,7 +1,6 @@
 import React from "react";
 
 import variableColors from "./styles/_App.module.scss";
-
 const { textColor } = variableColors;
 
 export default function HomePage(): JSX.Element {
