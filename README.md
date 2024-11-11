@@ -7,3 +7,5 @@ Files created during Udemy.com Next.js courses.
 2. [Next JS: The Complete Developer's Guide](https://www.udemy.com/course/next-js-the-complete-developers-guide)
 
 3. [Next.js 15 & React - The Complete Guide](https://www.udemy.com/course/nextjs-react-the-complete-guide)
+
+4. [Next.js From Scratch 2024](https://www.udemy.com/course/nextjs-from-scratch)
