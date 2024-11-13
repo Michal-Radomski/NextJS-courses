@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./styles/globals.css";
 import "./styles/globals.scss";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Next Course - Property Pulse",
@@ -25,8 +26,8 @@ export default function MainLayout({
       <body className={""} suppressHydrationWarning={true}>
         <Navbar />
         <main>{children}</main>
-        {/* <Footer />
-            <ToastContainer /> */}
+        <Footer />
+        {/* <ToastContainer /> */}
       </body>
     </html>
   );

@@ -1,14 +1,19 @@
 import React from "react";
 
 import variableColors from "./styles/_App.module.scss";
+import Hero from "@/components/Hero";
+import InfoBoxes from "@/components/InfoBoxes";
+
 const { textColor } = variableColors;
+console.log({ textColor });
 
 export default function HomePage(): JSX.Element {
   return (
     <React.Fragment>
-      <h1 style={{ color: textColor, textAlign: "center" }} className="text-3xl font-bold underline">
-        HomePage
-      </h1>
+      <Hero />
+      <InfoBoxes />
+      {/* <FeaturedProperties />
+      <HomeProperties /> */}
     </React.Fragment>
   );
 }
