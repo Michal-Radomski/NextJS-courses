@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaBed, FaBath, FaRulerCombined, FaMoneyBill, FaMapMarker } from "react-icons/fa";
 
 const PropertyCard = ({ property }: { property: Property }): JSX.Element => {
-  const getRateDisplay = (): string | undefined => {
+  const getRateDisplay = (): string => {
     const { rates } = property;
     if (rates.monthly) {
       return `$${rates.monthly.toLocaleString()}/mo`;
@@ -12,6 +12,7 @@ const PropertyCard = ({ property }: { property: Property }): JSX.Element => {
     } else if (rates.nightly) {
       return `$${rates.nightly.toLocaleString()}/night`;
     }
+    return null as any;
   };
 
   return (

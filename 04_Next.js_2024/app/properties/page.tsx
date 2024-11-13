@@ -12,7 +12,7 @@ const properties = propertiesData as Property[];
 
 const PropertiesPage = async ({ searchParams: { pageSize = 9, page = 1 } }): Promise<JSX.Element> => {
   // await connectDB();
-  const skip = (page - 1) * pageSize;
+  // const skip = (page - 1) * pageSize;
 
   // const total = await Property.countDocuments({});
   // const properties = await Property.find({}).skip(skip).limit(pageSize);

@@ -3,6 +3,7 @@ import React from "react";
 import variableColors from "./styles/_App.module.scss";
 import Hero from "@/components/Hero";
 import InfoBoxes from "@/components/InfoBoxes";
+import HomeProperties from "@/components/HomeProperties";
 
 const { textColor } = variableColors;
 console.log({ textColor });
@@ -12,8 +13,8 @@ export default function HomePage(): JSX.Element {
     <React.Fragment>
       <Hero />
       <InfoBoxes />
-      {/* <FeaturedProperties />
-      <HomeProperties /> */}
+      {/* <FeaturedProperties /> */}
+      <HomeProperties />
     </React.Fragment>
   );
 }
