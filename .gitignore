@@ -37,3 +37,5 @@ Temp/
 # posts.db
 *.db
 04_Next.js_2024/public/properties/*.*
+
+*.jsx

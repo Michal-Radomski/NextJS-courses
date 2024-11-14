@@ -1,5 +1,9 @@
 // Types and interfaces
 
+interface ObjectI {
+  [key: string]: any;
+}
+
 interface PropertyI {
   _id: string;
   owner: string;
