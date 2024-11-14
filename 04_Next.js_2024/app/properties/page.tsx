@@ -7,7 +7,7 @@ import PropertyCard from "@/components/PropertyCard";
 // import connectDB from '@/config/database';
 
 import propertiesData from "@/properties.json";
-const properties = propertiesData as Property[];
+const properties = propertiesData as PropertyI[];
 // console.log("properties:", properties);
 
 const PropertiesPage = async ({ searchParams: { pageSize = 9, page = 1 } }): Promise<JSX.Element> => {
@@ -34,7 +34,7 @@ const PropertiesPage = async ({ searchParams: { pageSize = 9, page = 1 } }): Pro
             <p>No properties found</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {properties.map((property: Property, index: number) => (
+              {properties.map((property: PropertyI, index: number) => (
                 <PropertyCard property={property} key={index} />
               ))}
             </div>

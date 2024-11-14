@@ -1,6 +1,6 @@
 // Types and interfaces
 
-interface Property {
+interface PropertyI {
   _id: string;
   owner: string;
   name: string;
@@ -30,4 +30,11 @@ interface Property {
   is_featured: boolean;
   createdAt: string;
   updatedAt: string;
+}
+
+interface UserI {
+  email: string;
+  username: string;
+  image: string;
+  bookmarks: Schema.Types.ObjectId[];
 }
