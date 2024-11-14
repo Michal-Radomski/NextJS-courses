@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-const UserSchema = new Schema(
+const UserSchema: Schema = new Schema(
   {
     email: {
       type: String,
@@ -23,6 +23,7 @@ const UserSchema = new Schema(
   },
   {
     timestamps: true,
+    collection: "User", // Specify the exact collection name
   }
 );
 

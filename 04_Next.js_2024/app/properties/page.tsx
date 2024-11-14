@@ -3,21 +3,24 @@ import React from "react";
 import PropertyCard from "@/components/PropertyCard";
 // import PropertySearchForm from '@/components/PropertySearchForm';
 // import Pagination from '@/components/Pagination';
-// import Property from '@/models/Property';
-// import connectDB from '@/config/database';
+import Property from "@/models/Property";
+import connectDB from "@/config/database";
 
-import propertiesData from "@/properties.json";
-const properties = propertiesData as PropertyI[];
-// console.log("properties:", properties);
+//* import propertiesData from "@/properties.json";
+//* const properties = propertiesData as PropertyI[];
+//* console.log("properties:", properties);
 
-const PropertiesPage = async ({ searchParams: { pageSize = 9, page = 1 } }): Promise<JSX.Element> => {
-  // await connectDB();
+const PropertiesPage = async (): Promise<JSX.Element> => {
+  await connectDB();
   // const skip = (page - 1) * pageSize;
+
+  const properties = (await Property.find({}).lean()) as any;
+  // console.log("properties:", properties);
 
   // const total = await Property.countDocuments({});
   // const properties = await Property.find({}).skip(skip).limit(pageSize);
 
-  // // Calculate if pagination is needed
+  // Calculate if pagination is needed
   // const showPagination = total > pageSize;
 
   return (
