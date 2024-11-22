@@ -4,17 +4,40 @@ import React from "react";
 import Image from "next/image";
 import { FaGoogle } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import { signIn, signOut, useSession, getProviders, LiteralUnion, ClientSafeProvider } from "next-auth/react";
+import { BuiltInProviderType } from "next-auth/providers/index";
 
 import logo from "@/assets/images/logo-white.png";
 import profileDefault from "@/assets/images/profile.png";
 import Link from "next/link";
+import UnreadMessageCount from "./UnreadMessageCount";
 
 const Navbar = (): JSX.Element => {
+  const { data: session } = useSession();
+  const profileImage = session?.user?.image;
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState<boolean>(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = React.useState<boolean>(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(true);
+  const [providers, setProviders] = React.useState<Record<
+    LiteralUnion<BuiltInProviderType, string>,
+    ClientSafeProvider
+  > | null>(null);
 
   const pathname: string = usePathname();
+
+  React.useEffect(() => {
+    const setAuthProviders = async () => {
+      const res = (await getProviders()) as Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider>;
+      setProviders(res);
+    };
+
+    setAuthProviders();
+
+    // NOTE: close mobile menu if the viewport size is changed
+    window.addEventListener("resize", () => {
+      setIsMobileMenuOpen(false);
+    });
+  }, []);
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -28,7 +51,7 @@ const Navbar = (): JSX.Element => {
               className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded="false"
-              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <span className="absolute -inset-0.5"></span>
               <span className="sr-only">Open main menu</span>
@@ -71,7 +94,7 @@ const Navbar = (): JSX.Element => {
                 >
                   Properties
                 </Link>
-                {isLoggedIn ? (
+                {session && (
                   <Link
                     href="/properties/add"
                     className={`${
@@ -80,25 +103,32 @@ const Navbar = (): JSX.Element => {
                   >
                     Add Property
                   </Link>
-                ) : null}
+                )}
               </div>
             </div>
           </div>
 
           {/* <!-- Right Side Menu (Logged Out) --> */}
-          {!isLoggedIn ? (
+          {!session && (
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center">
-                <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2">
-                  <FaGoogle className="text-white mr-2" />
-                  <span>Login or Register</span>
-                </button>
+                {providers &&
+                  Object.values(providers).map((provider) => (
+                    <button
+                      key={provider.name}
+                      onClick={() => signIn(provider.id)}
+                      className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-3"
+                    >
+                      <FaGoogle className="text-white mr-2" />
+                      <span>Login or Register</span>
+                    </button>
+                  ))}
               </div>
             </div>
-          ) : null}
+          )}
 
           {/* <!-- Right Side Menu (Logged In) --> */}
-          {isLoggedIn ? (
+          {session && (
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
               <Link href="/messages" className="relative group">
                 <button
@@ -122,9 +152,7 @@ const Navbar = (): JSX.Element => {
                     />
                   </svg>
                 </button>
-                <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
-                  2{/* <!-- Replace with the actual number of notifications --> */}
-                </span>
+                <UnreadMessageCount />
               </Link>
               {/* <!-- Profile dropdown button --> */}
               <div className="relative ml-3">
@@ -139,12 +167,18 @@ const Navbar = (): JSX.Element => {
                   >
                     <span className="absolute -inset-1.5"></span>
                     <span className="sr-only">Open user menu</span>
-                    <Image className="h-8 w-8 rounded-full" src={profileDefault} alt="" />
+                    <Image
+                      className="h-8 w-8 rounded-full"
+                      src={profileImage || profileDefault}
+                      alt=""
+                      width={40}
+                      height={40}
+                    />
                   </button>
                 </div>
 
                 {/* <!-- Profile dropdown --> */}
-                {isProfileMenuOpen ? (
+                {isProfileMenuOpen && (
                   <div
                     id="user-menu"
                     className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
@@ -159,6 +193,9 @@ const Navbar = (): JSX.Element => {
                       role="menuitem"
                       tabIndex={-1}
                       id="user-menu-item-0"
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);
+                      }}
                     >
                       Your Profile
                     </Link>
@@ -168,10 +205,17 @@ const Navbar = (): JSX.Element => {
                       role="menuitem"
                       tabIndex={-1}
                       id="user-menu-item-2"
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);
+                      }}
                     >
                       Saved Properties
                     </Link>
                     <button
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);
+                        signOut({ callbackUrl: "/" });
+                      }}
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex={-1}
@@ -180,15 +224,14 @@ const Navbar = (): JSX.Element => {
                       Sign Out
                     </button>
                   </div>
-                ) : null}
+                )}
               </div>
             </div>
-          ) : null}
+          )}
         </div>
       </div>
-
       {/* <!-- Mobile menu, show/hide based on menu state. --> */}
-      {isMobileMenuOpen ? (
+      {isMobileMenuOpen && (
         <div id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2">
             <Link
@@ -205,7 +248,7 @@ const Navbar = (): JSX.Element => {
             >
               Properties
             </Link>
-            {isLoggedIn ? (
+            {session && (
               <Link
                 href="/properties/add"
                 className={`${
@@ -214,16 +257,27 @@ const Navbar = (): JSX.Element => {
               >
                 Add Property
               </Link>
-            ) : null}
-            {!isLoggedIn ? (
-              <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4">
-                <i className="fa-brands fa-google mr-2"></i>
-                <span>Login or Register</span>
-              </button>
-            ) : null}
+            )}
+            {!session && (
+              <div className="block md:ml-6">
+                <div className="flex items-center">
+                  {providers &&
+                    Object.values(providers).map((provider) => (
+                      <button
+                        key={provider.name}
+                        onClick={() => signIn(provider.id)}
+                        className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-3"
+                      >
+                        <FaGoogle className="text-white mr-2" />
+                        <span>Login or Register</span>
+                      </button>
+                    ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
-      ) : null}
+      )}
     </nav>
   );
 };

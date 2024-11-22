@@ -4,6 +4,8 @@ import "./styles/globals.css";
 import "./styles/globals.scss";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AuthProvider from "@/components/AuthProvider";
+import { GlobalProvider } from "@/context/GlobalContext";
 
 export const metadata: Metadata = {
   title: "Next Course - Property Pulse",
@@ -17,18 +19,22 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        {/* TailwindCSS CDN */}
-        <script src="https://cdn.tailwindcss.com"></script>
-      </head>
+    <AuthProvider>
+      <GlobalProvider>
+        <html lang="en">
+          <head>
+            {/* TailwindCSS CDN */}
+            <script src="https://cdn.tailwindcss.com"></script>
+          </head>
 
-      <body className={""} suppressHydrationWarning={true}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        {/* <ToastContainer /> */}
-      </body>
-    </html>
+          <body className={""} suppressHydrationWarning={true}>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            {/* <ToastContainer /> */}
+          </body>
+        </html>
+      </GlobalProvider>
+    </AuthProvider>
   );
 }
