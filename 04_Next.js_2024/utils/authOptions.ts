@@ -20,7 +20,7 @@ export const authOptions = {
   ],
   callbacks: {
     // Invoked on successful signin
-    async signIn({ profile }: { profile: GoogleProfile }) {
+    async signIn({ profile }: { profile: GoogleProfile }): Promise<boolean> {
       // 1. Connect to database
       await connectDB();
       // 2. Check if user exists
@@ -28,7 +28,7 @@ export const authOptions = {
       // 3. If not, then add user to database
       if (!userExists) {
         // Truncate user name if too long
-        const username = profile.name?.slice(0, 20);
+        const username: string = profile.name?.slice(0, 20);
 
         await User.create({
           email: profile.email,
@@ -40,7 +40,7 @@ export const authOptions = {
       return true;
     },
     // Modifies the session object
-    async session({ session }: { session: Session }) {
+    async session({ session }: { session: Session }): Promise<Session> {
       // 1. Get user from database
       const user = await User.findOne({ email: session.user?.email });
       // 2. Assign the user id to the session
