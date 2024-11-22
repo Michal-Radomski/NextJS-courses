@@ -6,6 +6,7 @@ import { FaGoogle } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { signIn, signOut, useSession, getProviders, LiteralUnion, ClientSafeProvider } from "next-auth/react";
 import { BuiltInProviderType } from "next-auth/providers/index";
+import { Session } from "next-auth";
 
 import logo from "@/assets/images/logo-white.png";
 import profileDefault from "@/assets/images/profile.png";
@@ -13,7 +14,7 @@ import Link from "next/link";
 import UnreadMessageCount from "./UnreadMessageCount";
 
 const Navbar = (): JSX.Element => {
-  const { data: session } = useSession();
+  const { data: session } = useSession() as { data: Session };
   const profileImage = session?.user?.image;
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState<boolean>(false);
@@ -26,7 +27,7 @@ const Navbar = (): JSX.Element => {
   const pathname: string = usePathname();
 
   React.useEffect(() => {
-    const setAuthProviders = async () => {
+    const setAuthProviders = async (): Promise<void> => {
       const res = (await getProviders()) as Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider>;
       setProviders(res);
     };
@@ -113,16 +114,18 @@ const Navbar = (): JSX.Element => {
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center">
                 {providers &&
-                  Object.values(providers).map((provider) => (
-                    <button
-                      key={provider.name}
-                      onClick={() => signIn(provider.id)}
-                      className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-3"
-                    >
-                      <FaGoogle className="text-white mr-2" />
-                      <span>Login or Register</span>
-                    </button>
-                  ))}
+                  Object.values(providers).map(
+                    (provider: ClientSafeProvider, index: number): JSX.Element => (
+                      <button
+                        key={provider.name + index.toString()}
+                        onClick={() => signIn(provider.id)}
+                        className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-3"
+                      >
+                        <FaGoogle className="text-white mr-2" />
+                        <span>Login or Register</span>
+                      </button>
+                    )
+                  )}
               </div>
             </div>
           )}
@@ -163,7 +166,7 @@ const Navbar = (): JSX.Element => {
                     id="user-menu-button"
                     aria-expanded="false"
                     aria-haspopup="true"
-                    onClick={() => setIsProfileMenuOpen((prev) => !prev)}
+                    onClick={() => setIsProfileMenuOpen((prev: boolean) => !prev)}
                   >
                     <span className="absolute -inset-1.5"></span>
                     <span className="sr-only">Open user menu</span>
@@ -262,7 +265,7 @@ const Navbar = (): JSX.Element => {
               <div className="block md:ml-6">
                 <div className="flex items-center">
                   {providers &&
-                    Object.values(providers).map((provider) => (
+                    Object.values(providers).map((provider: ClientSafeProvider) => (
                       <button
                         key={provider.name}
                         onClick={() => signIn(provider.id)}
