@@ -1,5 +1,7 @@
 import React from "react";
 import { Params } from "next/dist/server/request/params";
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
 
 import PropertyHeaderImage from "@/components/PropertyHeaderImage";
 import PropertyDetails from "@/components/PropertyDetails";
@@ -10,8 +12,6 @@ import BookmarkButton from "@/components/BookmarkButton";
 import ShareButtons from "@/components/ShareButtons";
 import PropertyContactForm from "@/components/PropertyContactForm";
 import { convertToSerializableObject } from "@/utils/convertToObject";
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
 
 const PropertyPage = async ({ params }: { params: Params }): Promise<JSX.Element> => {
   await connectDB();
