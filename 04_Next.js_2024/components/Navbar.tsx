@@ -15,7 +15,10 @@ import UnreadMessageCount from "./UnreadMessageCount";
 
 const Navbar = (): JSX.Element => {
   const { data: session } = useSession() as { data: Session };
+  // console.log("session:", session);
+
   const profileImage = session?.user?.image;
+  // console.log("profileImage:", profileImage);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState<boolean>(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = React.useState<boolean>(false);
