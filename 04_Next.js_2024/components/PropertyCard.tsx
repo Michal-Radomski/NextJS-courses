@@ -18,7 +18,7 @@ const PropertyCard = ({ property }: { property: PropertyI }): JSX.Element => {
   return (
     <div className="rounded-xl shadow-md relative">
       <Image
-        // src={property.images[0]}
+        // src={property?.images?.[0]} //* Cloudinary
         src={`/properties/${property.images[0]}`}
         alt=""
         height={0}

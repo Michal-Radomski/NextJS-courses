@@ -52,7 +52,7 @@ async function addProperty(formData: FormData): Promise<void> {
     images: [] as string[],
   };
 
-  const imageUrls = [];
+  const imageUrls: string[] = [];
 
   for (const imageFile of images) {
     const imageBuffer: ArrayBuffer = await imageFile.arrayBuffer();

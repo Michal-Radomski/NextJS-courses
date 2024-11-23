@@ -26,7 +26,7 @@ const PropertyPage = async ({ params }: { params: Params }): Promise<JSX.Element
 
   return (
     <React.Fragment>
-      <PropertyHeaderImage image={property.images[0]} />
+      <PropertyHeaderImage image={property?.images?.[0]} />
       <section>
         <div className="container m-auto py-6 px-6">
           <Link href="/properties" className="text-blue-500 hover:text-blue-600 flex items-center">
