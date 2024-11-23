@@ -17,7 +17,7 @@ const Navbar = (): JSX.Element => {
   const { data: session } = useSession() as { data: Session };
   // console.log("session:", session);
 
-  const profileImage = session?.user?.image;
+  const profileImage = session?.user?.image as string;
   // console.log("profileImage:", profileImage);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState<boolean>(false);
