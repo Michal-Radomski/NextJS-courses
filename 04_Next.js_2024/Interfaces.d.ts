@@ -37,6 +37,7 @@ interface PropertyI {
 }
 
 interface UserI {
+  id?: string;
   email: string;
   username: string;
   image: string;

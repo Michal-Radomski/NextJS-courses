@@ -6,7 +6,6 @@ import { redirect } from "next/navigation";
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import { getSessionUser } from "@/utils/getSessionUser";
-
 import cloudinary from "@/config/cloudinary";
 
 async function addProperty(formData: FormData): Promise<void> {
