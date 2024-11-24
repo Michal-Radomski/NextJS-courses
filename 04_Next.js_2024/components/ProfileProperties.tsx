@@ -20,7 +20,9 @@ const ProfileProperties = ({ properties: initialProperties }: { properties: Prop
 
     toast.success("Property Deleted");
 
-    const updatedProperties = properties.filter((property) => property._id !== propertyId) as PropertyI[];
+    const updatedProperties: PropertyI[] = properties.filter(
+      (property: PropertyI) => property._id !== propertyId
+    ) as PropertyI[];
 
     setProperties(updatedProperties);
   };

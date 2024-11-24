@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "photoswipe/dist/photoswipe.css";
 
 import "./styles/globals.css";
 import "./styles/globals.scss";
@@ -31,7 +34,7 @@ export default function MainLayout({
             <Navbar />
             <main>{children}</main>
             <Footer />
-            {/* <ToastContainer /> */}
+            <ToastContainer />
           </body>
         </html>
       </GlobalProvider>
