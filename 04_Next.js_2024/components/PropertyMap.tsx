@@ -71,23 +71,25 @@ const PropertyMap = ({ property }: { property: PropertyI }): JSX.Element => {
   }
 
   return (
-    !loading && (
-      <Map
-        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN as string}
-        mapLib={import("mapbox-gl") as unknown as MapLib<any>}
-        initialViewState={{
-          longitude: lng as number,
-          latitude: lat as number,
-          zoom: 15,
-        }}
-        style={{ width: "100%", height: 500 }}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-      >
-        <Marker longitude={lng as number} latitude={lat as number} anchor="bottom">
-          <Image src={pin} alt="location" width={40} height={40} />
-        </Marker>
-      </Map>
-    )
+    <React.Fragment>
+      {!loading ? (
+        <Map
+          mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN as string}
+          mapLib={import("mapbox-gl") as unknown as MapLib<any>}
+          initialViewState={{
+            longitude: lng as number,
+            latitude: lat as number,
+            zoom: 15,
+          }}
+          style={{ width: "100%", height: 500 }}
+          mapStyle="mapbox://styles/mapbox/streets-v9"
+        >
+          <Marker longitude={lng as number} latitude={lat as number} anchor="bottom">
+            <Image src={pin} alt="location" width={40} height={40} />
+          </Marker>
+        </Map>
+      ) : null}
+    </React.Fragment>
   );
 };
 
