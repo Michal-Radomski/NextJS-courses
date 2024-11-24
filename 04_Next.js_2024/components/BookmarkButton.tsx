@@ -3,10 +3,10 @@
 import React from "react";
 import { FaBookmark } from "react-icons/fa";
 import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 import bookmarkProperty from "@/app/actions/bookmarkProperty";
 import checkBookmarkStatus from "@/app/actions/checkBookmarkStatus";
-import { toast } from "react-toastify";
 
 const BookmarkButton = ({ property }: { property: PropertyI }): JSX.Element => {
   const { data: session } = useSession();
@@ -36,7 +36,7 @@ const BookmarkButton = ({ property }: { property: PropertyI }): JSX.Element => {
 
     bookmarkProperty(property._id).then((res) => {
       if (res.error) return toast.error(res.error);
-      setIsBookmarked(res.isBookmarked);
+      setIsBookmarked(res.isBookmarked as boolean);
       toast.success(res.message);
     });
   };

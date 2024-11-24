@@ -38,11 +38,12 @@ interface PropertyI {
 }
 
 interface UserI {
+  save(): void;
   id?: string;
   email: string;
   username: string;
   image: string;
-  bookmarks: Schema.Types.ObjectId[];
+  bookmarks: Schema.Types.ObjectId[] | any;
 }
 
 interface ViewportI {
