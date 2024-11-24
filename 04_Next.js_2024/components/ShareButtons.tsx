@@ -1,4 +1,6 @@
 "use client";
+
+import React from "react";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -14,7 +16,7 @@ const ShareButtons = ({ property }: { property: PropertyI }): JSX.Element => {
   const shareUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/properties/${property._id}`;
 
   return (
-    <>
+    <React.Fragment>
       <h3 className="text-xl font-bold text-center pt-2">Share This Property:</h3>
       <div className="flex gap-3 justify-center pb-5">
         <FacebookShareButton
@@ -37,7 +39,7 @@ const ShareButtons = ({ property }: { property: PropertyI }): JSX.Element => {
           <EmailIcon size={40} round={true} />
         </EmailShareButton>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 export default ShareButtons;

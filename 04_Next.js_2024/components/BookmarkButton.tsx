@@ -1,19 +1,21 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import React from "react";
 import { FaBookmark } from "react-icons/fa";
 import { useSession } from "next-auth/react";
+
 import bookmarkProperty from "@/app/actions/bookmarkProperty";
 import checkBookmarkStatus from "@/app/actions/checkBookmarkStatus";
 import { toast } from "react-toastify";
 
 const BookmarkButton = ({ property }: { property: PropertyI }): JSX.Element => {
   const { data: session } = useSession();
-  // @ts-ignore
-  const userId = session?.user?.id;
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const userId = (session?.user as UserI)?.id as string;
 
-  useEffect(() => {
+  const [isBookmarked, setIsBookmarked] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(true);
+
+  React.useEffect(() => {
     if (!userId) {
       setLoading(false);
       return;
@@ -26,7 +28,7 @@ const BookmarkButton = ({ property }: { property: PropertyI }): JSX.Element => {
     });
   }, [property._id, userId, checkBookmarkStatus]);
 
-  const handleClick = async () => {
+  const handleClick = async (): Promise<void> => {
     if (!userId) {
       toast.error("You need to sign in to bookmark a property");
       return;
