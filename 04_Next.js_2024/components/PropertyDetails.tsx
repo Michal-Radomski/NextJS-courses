@@ -1,4 +1,5 @@
 import { FaBed, FaBath, FaRulerCombined, FaTimes, FaCheck, FaMapMarker } from "react-icons/fa";
+
 import PropertyMap from "@/components/PropertyMap";
 
 const PropertyDetails = ({ property }: { property: PropertyI }): JSX.Element => {

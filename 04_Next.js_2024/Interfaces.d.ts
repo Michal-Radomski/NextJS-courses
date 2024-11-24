@@ -44,3 +44,11 @@ interface UserI {
   image: string;
   bookmarks: Schema.Types.ObjectId[];
 }
+
+interface ViewportI {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+  width: string;
+  height: string;
+}
