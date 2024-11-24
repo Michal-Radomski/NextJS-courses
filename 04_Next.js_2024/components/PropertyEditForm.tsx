@@ -1,7 +1,7 @@
 import updateProperty from "@/app/actions/updateProperty";
 
 const PropertyEditForm = ({ property }: { property: PropertyI }): JSX.Element => {
-  const updatePropertyById = updateProperty.bind(null, property._id);
+  const updatePropertyById = updateProperty.bind(null, property._id) as (formData: FormData) => Promise<void>;
 
   return (
     <form action={updatePropertyById}>
@@ -391,4 +391,5 @@ const PropertyEditForm = ({ property }: { property: PropertyI }): JSX.Element =>
     </form>
   );
 };
+
 export default PropertyEditForm;
