@@ -16,7 +16,7 @@ import { convertToSerializableObject } from "@/utils/convertToObject";
 const PropertyPage = async ({ params }: { params: Params }): Promise<JSX.Element> => {
   await connectDB();
   const propertyDoc = (await Property.findById(params.id).lean()) as unknown as PropertyI;
-  console.log("propertyDoc:", propertyDoc);
+  // console.log("propertyDoc:", propertyDoc);
 
   const property = convertToSerializableObject(propertyDoc) as PropertyI;
 
