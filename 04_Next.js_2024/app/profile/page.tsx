@@ -51,7 +51,7 @@ const ProfilePage = async (): Promise<JSX.Element> => {
               {properties.length === 0 ? (
                 <p>You have no property listings</p>
               ) : (
-                <ProfileProperties properties={properties} />
+                <ProfileProperties properties={properties as PropertyI[]} />
               )}
             </div>
           </div>

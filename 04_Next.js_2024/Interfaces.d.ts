@@ -5,6 +5,7 @@ interface ObjectI {
 }
 
 interface PropertyI {
+  deleteOne(): void;
   _id: string;
   owner: string;
   name: string;
