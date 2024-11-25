@@ -1,4 +1,4 @@
-// import PropertySearchForm from './PropertySearchForm';
+import PropertySearchForm from "./PropertySearchForm";
 
 const Hero = (): JSX.Element => {
   return (
@@ -8,7 +8,7 @@ const Hero = (): JSX.Element => {
           <h1 className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">Find The Perfect Rental</h1>
           <p className="my-4 text-xl text-white">Discover the perfect property that suits your needs.</p>
         </div>
-        {/* <PropertySearchForm /> */}
+        <PropertySearchForm />
       </div>
     </section>
   );
