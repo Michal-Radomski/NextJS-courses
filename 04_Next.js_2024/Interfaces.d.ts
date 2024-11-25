@@ -55,6 +55,7 @@ interface ViewportI {
 }
 
 interface MessageI {
+  createdAt: string | number | Date;
   _id: string;
   sender: string;
   recipient: string;
