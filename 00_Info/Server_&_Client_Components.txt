@@ -1,4 +1,4 @@
-To connect server components with client components in Next.js, you can follow a structured approach that allows for effective data flow and rendering. Here’s how to do it:
+To connect server components with client components in Next.js, you can follow a structured approach that allows for effective data flow and rendering. Here,s how to do it:
 
 ## Understanding Server and Client Components
 
