@@ -53,3 +53,14 @@ interface ViewportI {
   width: string;
   height: string;
 }
+
+interface MessageI {
+  sender: string;
+  recipient: string;
+  property: Schema.Types.ObjectId;
+  name: string;
+  email: string;
+  phone: string;
+  body: string;
+  read: boolean;
+}
