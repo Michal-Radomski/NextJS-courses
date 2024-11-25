@@ -55,6 +55,7 @@ interface ViewportI {
 }
 
 interface MessageI {
+  _id: string;
   sender: string;
   recipient: string;
   property: Schema.Types.ObjectId;
