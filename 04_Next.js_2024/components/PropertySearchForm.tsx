@@ -10,13 +10,13 @@ const PropertySearchForm = (): JSX.Element => {
 
   const router: AppRouterInstance = useRouter();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
     if (location === "" && propertyType === "All") {
       router.push("/properties");
     } else {
-      const query = `?location=${location}&propertyType=${propertyType}`;
+      const query: string = `?location=${location}&propertyType=${propertyType}`;
 
       router.push(`/properties/search-results${query}`);
     }
