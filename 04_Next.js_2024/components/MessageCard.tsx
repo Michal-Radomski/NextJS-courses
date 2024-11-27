@@ -11,7 +11,7 @@ const MessageCard = ({ message }: { message: MessageI }): JSX.Element => {
   const [isRead, setIsRead] = React.useState<boolean>(message.read);
   const [isDeleted, setIsDeleted] = React.useState<boolean>(false);
 
-  const { setUnreadCount } = useGlobalContext();
+  const { setUnreadCount }: { setUnreadCount: React.Dispatch<React.SetStateAction<number>> } = useGlobalContext();
 
   const handleReadClick = async (): Promise<void> => {
     const read = await markMessageAsRead(message._id);
