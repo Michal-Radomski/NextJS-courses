@@ -10,7 +10,7 @@ const PropertyImages = ({ images }: { images: string[] }): JSX.Element => {
         <div className="container mx-auto">
           {images.length === 1 ? (
             <Item original={images[0]} thumbnail={images[0]} width="1000" height="600">
-              {({ ref, open }) => (
+              {({ ref, open }): JSX.Element => (
                 <Image
                   ref={ref}
                   onClick={open}
