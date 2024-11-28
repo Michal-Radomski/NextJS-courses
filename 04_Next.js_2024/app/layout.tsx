@@ -30,7 +30,7 @@ export default function MainLayout({
             <script src="https://cdn.tailwindcss.com"></script>
           </head>
 
-          <body className={""} suppressHydrationWarning={true}>
+          <body suppressHydrationWarning={true}>
             <Navbar />
             <main>{children}</main>
             <Footer />
